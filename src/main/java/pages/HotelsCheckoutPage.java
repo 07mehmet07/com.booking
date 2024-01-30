@@ -20,6 +20,9 @@ public class HotelsCheckoutPage extends BasePage {
     @FindBy(xpath = "//input[@name='cardNumber']")
     private WebElement cvvField;
 
+    @FindBy(xpath = "//span[text()=\"Complete Booking\"]")
+    private WebElement completeBookingButton;
+
     public void fillPhoneNumberField(String text) {
         phoneNumberField.sendKeys(text);
     }
@@ -34,5 +37,8 @@ public class HotelsCheckoutPage extends BasePage {
     }
     public void fillCvvField(String text) {
         cvvField.sendKeys(text);
+    }
+    public void clickCompleteBookingButton(){
+        completeBookingButton.click();
     }
 }

@@ -14,6 +14,9 @@ public class HotelDetailsPage extends BasePage {
     @FindBy(xpath = "(//input[@name=\"firstname\"])")
     private WebElement emailField;
 
+    @FindBy(xpath = "//div[@class='d-flex justify-content-center align-items-center ms-4']")
+    private WebElement finalDetailsButton;
+
     public void fillFirstNameField(String text){
         firstNameField.sendKeys(text);
     }
@@ -23,4 +26,5 @@ public class HotelDetailsPage extends BasePage {
     public void fillEmailField(String text){
         firstNameField.sendKeys(text);
     }
+    public void clickFinalDetailsButton(){finalDetailsButton.click();}
 }

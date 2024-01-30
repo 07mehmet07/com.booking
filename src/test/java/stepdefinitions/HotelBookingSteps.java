@@ -1,6 +1,6 @@
-package StepDefinitions;
+package stepdefinitions;
 
-import hook.Hooks;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,34 +10,35 @@ import org.assertj.core.api.Assertions;
 import utils.BrowserUtils;
 import utils.DriverManager;
 
-public class HotelBookingSteps extends Hooks {
+public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	public static final Logger LOGGER = LogManager.getLogger(HotelBookingSteps.class);
 
 	@Given("user is in the booking.com page")
 	public void user_is_in_the_booking_com_page() {
-		DriverManager.getDriver().get("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
+		DriverManager.getWebDriver().get("baseURL");
+		PAGES.getHomePage().clickBookingLink();
 		LOGGER.info("User is navigated to the booking.com page");
 	}
 
-	@Given("types New York in the search bar")
+	@And("types New York in the search bar")
 	public void types_new_york_in_the_search_bar() {
 		PAGES.getStaysTabHomepage().sendKeysToDestination("New York");
 		LOGGER.info("User sends New York as a destination");
 	}
 
-	@Given("chooses next month’s 8'th day to 10'th day")
+	@And("chooses next month’s 8'th day to 10'th day")
 	public void chooses_next_month_s_8_day_to_10_day() {
 		PAGES.getStaysTabHomepage().clickDatePickerAndSelect(1);
 		LOGGER.info("User selects days 8 to 10");
 	}
 
-	@Given("chooses one adult")
+	@And("chooses one adult")
 	public void chooses_one_adult() {
 		LOGGER.info("One adult is selected default");
 	}
 
-	@Given("clicks search hotels button")
+	@And("clicks search hotels button")
 	public void clicks_search_hotels_button() {
 		PAGES.getStaysTabHomepage().clickOnSearchButton();
 		LOGGER.info("User Clicks on the Search Button");
@@ -48,24 +49,24 @@ public class HotelBookingSteps extends Hooks {
 		LOGGER.info("User is navigated to Hotel Search Page");
 	}
 
-	@When("user chooses first hotel")
+	@And("user chooses first hotel")
 	public void user_chooses_first_hotel() {
 		PAGES.getHotelSearchPage().clickSeeAvailabilityButton(0);
 		LOGGER.info("User clicks to See Availability Button");
 	}
 
-	@When("in the mentioned hotel’s description page user clicks reserve or book now")
+	@And("in the mentioned hotel’s description page user clicks reserve or book now")
 	public void in_the_mentioned_hotel_s_description_page_user_clicks_reserve_or_book_now() {
 		PAGES.getHotelInfoPage().clickBookNowButton();
 		LOGGER.info("User in the Hotel's Info Page and clicks book now button");
 	}
 
-	@When("user sees checkout process’ first page")
+	@And("user sees checkout process’ first page")
 	public void user_sees_checkout_process_first_page() {
 		LOGGER.info("User in the Hotel's Detail Page");
 	}
 
-	@When("user fills first name, last name, email fields and clicks Next Final Details Button")
+	@And("user fills first name, last name, email fields and clicks Next Final Details Button")
 	public void user_fills_first_name_last_name_email_fields_and_clicks_next_final_details_button() {
 		PAGES.getHotelDetailsPage().fillFirstNameField("Tarıq Jake");
 		PAGES.getHotelDetailsPage().fillLastNameField("Gulbas");
@@ -75,7 +76,7 @@ public class HotelBookingSteps extends Hooks {
 		LOGGER.info("User filled credentials in the page and clicked next button");
 	}
 
-	@When("in the final details page user fills phone number, card holders name, card number, cvc afterwards clicks complete booking button")
+	@And("in the final details page user fills phone number, card holders name, card number, cvc afterwards clicks complete booking button")
 	public void in_the_final_details_page_user_fills_phone_number_card_holders_name_card_number_cvc_afterwards_clicks_complete_booking_button() {
 		BrowserUtils.scrollUpWithPageUpButton(2);
 		PAGES.getHotelsCheckoutPage().fillPhoneNumberField("5555551234");
@@ -98,9 +99,9 @@ public class HotelBookingSteps extends Hooks {
 		PAGES.getStaysTabHomepage().closeTheDialog();
 	}
 
-	@Then("verify user sees booking.com homepage")
+	@And("verify user sees booking.com homepage")
 	public void verify_user_sees_booking_com_homepage() {
-		boolean result = DriverManager.getDriver()
+		boolean result = DriverManager.getWebDriver()
 			.getCurrentUrl()
 			.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
 		Assertions.assertThat(result).isTrue();

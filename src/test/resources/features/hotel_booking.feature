@@ -1,3 +1,4 @@
+@smokeTests
 Feature: Displays a sample feature file
 #
 #  Background:
@@ -5,7 +6,6 @@ Feature: Displays a sample feature file
 #    And I click on the Booking Link
 
 #This name must be the same as the tags in the CukesRunner class
-  @smokeTests
   Scenario: As a user i should be able to book a hotel room and see successful checkout page
     Given user is in the booking.com page
     And types New York in the search bar

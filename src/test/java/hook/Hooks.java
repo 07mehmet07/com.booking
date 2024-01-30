@@ -30,7 +30,7 @@ public class Hooks {
 		LOGGER.info("---------------Test Automation has started------------");
 		LOGGER.info("Test Scenario : " + scenario.getName());
 		LOGGER.info("Browser type ----> " + ConfigurationManager.getProperty("browser"));
-		DriverManager.getDriver().manage().window().maximize();
+		DriverManager.getWebDriver().manage().window().maximize();
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Hooks {
 	@After
 	public void tearDown(Scenario scenario) {
 		if (scenario.isFailed()) {
-			TakesScreenshot takesScreenshot = (TakesScreenshot) DriverManager.getDriver();
+			TakesScreenshot takesScreenshot = (TakesScreenshot) DriverManager.getWebDriver();
 			byte[] image = takesScreenshot.getScreenshotAs(OutputType.BYTES);
 			BrowserUtils.getScreenshot(scenario.getName());
 			scenario.attach(image, "image/png", scenario.getName());

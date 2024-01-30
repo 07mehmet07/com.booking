@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.HashMap;
 
 public class DriverManager {
+
 	private static final ThreadLocal<WebDriver> THREAD_LOCAL_DRIVER = new ThreadLocal<>();
 
 	private DriverManager() {

@@ -10,7 +10,7 @@ public class StaysTabHomepage extends BasePage {
 	@FindBy(xpath = "//div[@class=\"headerList\"]/div")
 	private List<WebElement> headerList;
 
-	@FindBy(xpath = " //div[@class=\"headerSearch\"]/div")
+	@FindBy(xpath = "//div[@class=\"headerSearch\"]/div")
 	private WebElement searchBox;
 
 	@FindBy(xpath = "//button[@class=\"rdrNextPrevButton rdrNextButton\"]")
@@ -40,6 +40,9 @@ public class StaysTabHomepage extends BasePage {
 	@FindBy(xpath = "//div[@class=\"modal-dialog\"]")
 	private WebElement dialogElement;
 
+	@FindBy(xpath = "//input[@placeholder='Where are you going?']")
+	private WebElement cityFieldButton;
+
 	public void selectTheOperationPage(int pageNumber) {
 		if (pageNumber == 1) {
 			headerList.get(0).click();
@@ -56,7 +59,7 @@ public class StaysTabHomepage extends BasePage {
 	}
 
 	public void sendKeysToDestination(String city) {
-		searchBox.sendKeys(city);
+		cityFieldButton.sendKeys(city);
 	}
 
 	public void clickDatePickerAndSelect(int month) {
@@ -108,6 +111,10 @@ public class StaysTabHomepage extends BasePage {
 
 	public boolean isTheDialogueDisplayed() {
 		return !dialogElement.equals(null);
+	}
+
+	public void clickOnCityField() {
+		cityFieldButton.click();
 	}
 
 }

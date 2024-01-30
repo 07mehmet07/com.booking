@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
+import utils.BrowserUtils;
 import utils.DriverManager;
 
 public class HotelBookingSteps extends Hooks {
@@ -69,20 +70,23 @@ public class HotelBookingSteps extends Hooks {
 		PAGES.getHotelDetailsPage().fillFirstNameField("Tarıq Jake");
 		PAGES.getHotelDetailsPage().fillLastNameField("Gulbas");
 		PAGES.getHotelDetailsPage().fillEmailField("Tarıq@gulbas.com");
+		BrowserUtils.scrollDownWithPageDownButton(2);
 		PAGES.getHotelDetailsPage().clickFinalDetailsButton();
 		LOGGER.info("User filled credentials in the page and clicked next button");
 	}
 
 	@When("in the final details page user fills phone number, card holders name, card number, cvc afterwards clicks complete booking button")
 	public void in_the_final_details_page_user_fills_phone_number_card_holders_name_card_number_cvc_afterwards_clicks_complete_booking_button() {
+		BrowserUtils.scrollUpWithPageUpButton(2);
 		PAGES.getHotelsCheckoutPage().fillPhoneNumberField("5555551234");
+		BrowserUtils.scrollDownWithPageDownButton(1);
 		PAGES.getHotelsCheckoutPage().fillCardHoldersNameField("Tarıq Jake Gulbas");
+		BrowserUtils.scrollDownWithPageDownButton(1);
 		PAGES.getHotelsCheckoutPage().fillCardNumberField("1234123412341234");
 		PAGES.getHotelsCheckoutPage().fillExpDateField("11/28");
 		PAGES.getHotelsCheckoutPage().fillCvvField("123");
 		PAGES.getHotelsCheckoutPage().clickCompleteBookingButton();
 		LOGGER.info("User filled payment credentials in the page and clicked complete button");
-
 	}
 
 	@Then("user should see checkout dialogue and click close button properly")
@@ -90,6 +94,8 @@ public class HotelBookingSteps extends Hooks {
 		boolean result = PAGES.getStaysTabHomepage().isTheDialogueDisplayed();
 		Assertions.assertThat(result).isTrue();
 		LOGGER.info("User sees the dialogue is displayed");
+		BrowserUtils.scrollDownWithPageDownButton(1);
+		PAGES.getStaysTabHomepage().closeTheDialog();
 	}
 
 	@Then("verify user sees booking.com homepage")

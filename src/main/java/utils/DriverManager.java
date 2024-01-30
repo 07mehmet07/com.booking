@@ -78,5 +78,4 @@ public class DriverManager {
 			DRIVER_POOL.remove();
 		}
 	}
-
 }

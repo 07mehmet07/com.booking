@@ -5,15 +5,15 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    @FindBy(linkText = "Booking")
-    private WebElement bookingLink;
+	@FindBy(linkText = "Booking")
+	private WebElement bookingLink;
 
-    public HomePage() {
-        super();
-    }
+	public HomePage() {
+		super();
+	}
 
-    public void clickBookingLink() {
-        bookingLink.click();
-    }
+	public void clickBookingLink() {
+		bookingLink.click();
+	}
 
 }

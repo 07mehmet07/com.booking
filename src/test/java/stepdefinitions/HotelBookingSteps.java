@@ -24,6 +24,7 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@And("types New York in the search bar")
 	public void types_new_york_in_the_search_bar() {
+		PAGES.getStaysTabHomepage().clickOnCityField();
 		PAGES.getStaysTabHomepage().sendKeysToDestination("New York");
 		LOGGER.info("User sends New York as a destination");
 	}
@@ -67,14 +68,29 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		LOGGER.info("User in the Hotel's Detail Page");
 	}
 
-	@And("user fills first name, last name, email fields and clicks Next Final Details Button")
-	public void user_fills_first_name_last_name_email_fields_and_clicks_next_final_details_button() {
-		PAGES.getHotelDetailsPage().fillFirstNameField("Tarıq Jake");
-		PAGES.getHotelDetailsPage().fillLastNameField("Gulbas");
-		PAGES.getHotelDetailsPage().fillEmailField("Tarıq@gulbas.com");
-		BrowserUtils.scrollDownWithPageDownButton(2);
+	@And("user selects the work selection")
+	public void userSelectsTheWorkSelection() {
+		PAGES.getHotelDetailsPage().selectTheTravelForWork("yes");
+		BrowserUtils.wait(0.5);
+	}
+
+	@And("user fills first name, last name, email fields")
+	public void userFillsFirstNameLastNameEmailFields() {
+		PAGES.getHotelDetailsPage().fillFirstNameField("Sefa");
+		PAGES.getHotelDetailsPage().fillLastNameField("Ataker");
+		PAGES.getHotelDetailsPage().fillEmailField("KingCan@gmail.com");
+		BrowserUtils.scrollDownWithPageDownButton(1);
+	}
+
+	@And("user selects the Who are you booking for")
+	public void userSelectsTheWhoAreYouBookingFor() {
+		PAGES.getHotelDetailsPage().selectTheWhoAreYouBookingFor(2);
+		BrowserUtils.scrollDownWithPageDownButton(1);
+	}
+
+	@And("user click to the next page button")
+	public void userClickToTheNextPageButton() {
 		PAGES.getHotelDetailsPage().clickFinalDetailsButton();
-		LOGGER.info("User filled credentials in the page and clicked next button");
 	}
 
 	@And("in the final details page user fills phone number, card holders name, card number, cvc afterwards clicks complete booking button")

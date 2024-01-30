@@ -9,44 +9,50 @@ import pages.*;
 
 @Data
 public class Pages {
-    private HomePage homePage;
 
-    private HotelDetailsPage hotelDetailsPage;
+	private HomePage homePage;
 
-    private HotelInfoPage hotelInfoPage;
+	private HotelDetailsPage hotelDetailsPage;
 
-    private HotelsCheckoutPage hotelsCheckoutPage;
+	private HotelInfoPage hotelInfoPage;
 
-    private HotelSearchPage hotelSearchPage;
-    private StaysTabHomepage staysTabHomepage;
+	private HotelsCheckoutPage hotelsCheckoutPage;
 
-    public Pages() {
-        homePage = new HomePage();
-        hotelDetailsPage = new HotelDetailsPage();
-        hotelInfoPage = new HotelInfoPage();
-        hotelsCheckoutPage = new HotelsCheckoutPage();
-        hotelSearchPage = new HotelSearchPage();
-        staysTabHomepage = new StaysTabHomepage();
-    }
+	private HotelSearchPage hotelSearchPage;
 
-    public HomePage getHomePage() {
-        return homePage;
-    }
+	private StaysTabHomepage staysTabHomepage;
 
-    public HotelDetailsPage getHotelDetailsPage() {
-        return hotelDetailsPage;
-    }
+	public Pages() {
+		homePage = new HomePage();
+		hotelDetailsPage = new HotelDetailsPage();
+		hotelInfoPage = new HotelInfoPage();
+		hotelsCheckoutPage = new HotelsCheckoutPage();
+		hotelSearchPage = new HotelSearchPage();
+		staysTabHomepage = new StaysTabHomepage();
+	}
 
-    public HotelInfoPage getHotelInfoPage() {
-        return hotelInfoPage;
-    }
+	public HomePage getHomePage() {
+		return homePage;
+	}
 
-    public HotelsCheckoutPage getHotelsCheckoutPage() {
-        return hotelsCheckoutPage;
-    }
+	public HotelDetailsPage getHotelDetailsPage() {
+		return hotelDetailsPage;
+	}
 
-    public HotelSearchPage getHotelSearchPage() {
-        return hotelSearchPage;
-    }
-    public StaysTabHomepage getStaysTabHomepage() { return staysTabHomepage;}
+	public HotelInfoPage getHotelInfoPage() {
+		return hotelInfoPage;
+	}
+
+	public HotelsCheckoutPage getHotelsCheckoutPage() {
+		return hotelsCheckoutPage;
+	}
+
+	public HotelSearchPage getHotelSearchPage() {
+		return hotelSearchPage;
+	}
+
+	public StaysTabHomepage getStaysTabHomepage() {
+		return staysTabHomepage;
+	}
+
 }

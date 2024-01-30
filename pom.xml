@@ -16,7 +16,7 @@
 
         <!-- Dependency versions -->
 
-        <selenium.version>4.16.1</selenium.version>
+        <selenium.version>4.17.0</selenium.version>
 
         <lombok.version>1.18.30</lombok.version>
 

@@ -4,7 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class JSUtils {
 
-	private static JavascriptExecutor javascriptExecutor = (JavascriptExecutor) DriverManager.getDriver();
+	private static JavascriptExecutor javascriptExecutor = (JavascriptExecutor) DriverManager.getWebDriver();
 
 	/**
 	 * Executes the provided JavaScript code.

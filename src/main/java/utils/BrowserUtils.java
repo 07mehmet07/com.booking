@@ -25,7 +25,7 @@ public class BrowserUtils {
 		// Adding date and time to the screenshot name to make it unique
 		name = new Date().toString().replace(" ", "_").replace(":", "-") + "_" + name;
 		String path = System.getProperty("user.dir") + "\\test-output\\screenshots\\" + name + ".png";
-		TakesScreenshot screenshot = (TakesScreenshot) DriverManager.getDriver();
+		TakesScreenshot screenshot = (TakesScreenshot) DriverManager.getWebDriver();
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
 		File destination = new File(path);
 		try {
@@ -42,7 +42,7 @@ public class BrowserUtils {
 	 * @param element the web element to move the mouse pointer to
 	 */
 	public static void moveToElement(WebElement element) {
-		Actions actions = new Actions(DriverManager.getDriver());
+		Actions actions = new Actions(DriverManager.getWebDriver());
 		actions.moveToElement(element).build().perform();
 	}
 
@@ -51,37 +51,37 @@ public class BrowserUtils {
 	 * @param targetTitle the title of the target window
 	 */
 	public static void navigateToWindow(String targetTitle) {
-		String currentWindow = DriverManager.getDriver().getWindowHandle();
-		for (String handle : DriverManager.getDriver().getWindowHandles()) {
-			DriverManager.getDriver().switchTo().window(handle);
-			if (DriverManager.getDriver().getTitle().equals(targetTitle)) {
+		String currentWindow = DriverManager.getWebDriver().getWindowHandle();
+		for (String handle : DriverManager.getWebDriver().getWindowHandles()) {
+			DriverManager.getWebDriver().switchTo().window(handle);
+			if (DriverManager.getWebDriver().getTitle().equals(targetTitle)) {
 				return;
 			}
 		}
-		DriverManager.getDriver().switchTo().window(currentWindow);
+		DriverManager.getWebDriver().switchTo().window(currentWindow);
 	}
 
 	/**
 	 * Switches to a grandchild window.
 	 */
 	public static void switchToGrandChildWindow() {
-		Set<String> windows = DriverManager.getDriver().getWindowHandles();
+		Set<String> windows = DriverManager.getWebDriver().getWindowHandles();
 		Iterator<String> iterations = windows.iterator();
 		String parentWindow = iterations.next();
 		String childWindow = iterations.next();
 		String grandChildindow = iterations.next();
-		DriverManager.getDriver().switchTo().window(grandChildindow);
+		DriverManager.getWebDriver().switchTo().window(grandChildindow);
 	}
 
 	/**
 	 * Switches to a popup window.
 	 */
 	public static void switchToPopUpWindow() {
-		Set<String> windows = DriverManager.getDriver().getWindowHandles();
+		Set<String> windows = DriverManager.getWebDriver().getWindowHandles();
 		Iterator<String> iterations = windows.iterator();
 		String parentWindow = iterations.next();
 		String childWindow = iterations.next();
-		DriverManager.getDriver().switchTo().window(childWindow);
+		DriverManager.getWebDriver().switchTo().window(childWindow);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class BrowserUtils {
 	}
 
 	public static void scrollDownWithPageDownButton(int times) {
-		Actions actions = new Actions(DriverManager.getDriver());
+		Actions actions = new Actions(DriverManager.getWebDriver());
 		for (int i = 0; i < times; i++) {
 			actions.keyDown(Keys.PAGE_DOWN).build().perform();
 			BrowserUtils.wait(1);
@@ -115,7 +115,7 @@ public class BrowserUtils {
 	}
 
 	public static void scrollUpWithPageUpButton(int times) {
-		Actions actions = new Actions(DriverManager.getDriver());
+		Actions actions = new Actions(DriverManager.getWebDriver());
 		for (int i = 0; i < times; i++) {
 			actions.keyDown(Keys.PAGE_UP).build().perform();
 			BrowserUtils.wait(1);

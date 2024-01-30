@@ -1,4 +1,4 @@
-package hotels;
+package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -6,7 +6,7 @@ import pages.BasePage;
 
 import java.util.List;
 
-public class Stays_Tab_Homepage extends BasePage {
+public class StaysTabHomepage extends BasePage {
     @FindBy(xpath = "//div[@class=\"headerList\"]/div")
     private List<WebElement> headerList;
 

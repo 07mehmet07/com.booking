@@ -9,7 +9,7 @@ Feature: Displays a sample feature file
   Scenario: As a user i should be able to book a hotel room and see successful checkout page
     Given user is in the booking.com page
     And types New York in the search bar
-    And chooses next month’s #8 day to #10 day
+    And chooses next month’s 8'th day to 10'th day
     And chooses one adult
     And clicks search hotels button
     When user navigated to hotel search page

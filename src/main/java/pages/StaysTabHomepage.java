@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class StaysTabHomepage extends BasePage {
     @FindBy(xpath = "//button[@class=\"btn btn-danger fs-4\"]")
     private WebElement dialogCloseButton;
 
-    @FindBy(xpath = "//div[@class=\"modal-dialog\"]\n")
+    @FindBy(xpath = "//div[@class=\"modal-dialog\"]")
     private WebElement dialogElement;
 
 
@@ -58,9 +57,9 @@ public class StaysTabHomepage extends BasePage {
             searchBox.sendKeys(city);
     }
 
-    public void clickDatePickerAndSelect(int number){
+    public void clickDatePickerAndSelect(int month){
         datePickerButtonAndResidentsButton.get(0).click();
-        for (int i = 0; i < number; i++) {
+        for (int i = 0; i < month; i++) {
             datePickerNextButton.click();
         }
         actions.moveToElement(startDayOfBooking).click();
@@ -71,7 +70,7 @@ public class StaysTabHomepage extends BasePage {
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfIncreaseSelectors.get(0).click();
     }
-    public void decraseAdultCount(){
+    public void decreaseAdultCount(){
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfDecraseSelectors.get(0).click();
     }
@@ -80,16 +79,16 @@ public class StaysTabHomepage extends BasePage {
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfIncreaseSelectors.get(1).click();
     }
-    public void decraseChildrenCount(){
+    public void decreaseChildrenCount(){
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfDecraseSelectors.get(1).click();
     }
 
-    public void increaseRoomtCount(){
+    public void increaseRoomCount(){
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfIncreaseSelectors.get(2).click();
     }
-    public void decraseRoomCount(){
+    public void decreaseRoomCount(){
         datePickerButtonAndResidentsButton.get(1).click();
         residentsOptionsOfDecraseSelectors.get(2).click();
     }
@@ -100,10 +99,7 @@ public class StaysTabHomepage extends BasePage {
         dialogCloseButton.click();
     }
 
-    public boolean isDisplayedTheDialog(){
-        if (dialogElement.isDisplayed()){
-            return true;
-        }
-        return false;
+    public boolean isTheDialogueDisplayed(){
+        return !dialogElement.equals(null);
     }
 }

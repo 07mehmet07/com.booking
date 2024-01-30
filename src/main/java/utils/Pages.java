@@ -18,6 +18,7 @@ public class Pages {
     private HotelsCheckoutPage hotelsCheckoutPage;
 
     private HotelSearchPage hotelSearchPage;
+    private StaysTabHomepage staysTabHomepage;
 
     public Pages() {
         homePage = new HomePage();
@@ -25,6 +26,7 @@ public class Pages {
         hotelInfoPage = new HotelInfoPage();
         hotelsCheckoutPage = new HotelsCheckoutPage();
         hotelSearchPage = new HotelSearchPage();
+        staysTabHomepage = new StaysTabHomepage();
     }
 
     public HomePage getHomePage() {
@@ -46,4 +48,5 @@ public class Pages {
     public HotelSearchPage getHotelSearchPage() {
         return hotelSearchPage;
     }
+    public StaysTabHomepage getStaysTabHomepage() { return staysTabHomepage;}
 }

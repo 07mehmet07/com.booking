@@ -7,11 +7,12 @@ import pages.BasePage;
 import java.util.List;
 
 public class HotelSearchPage extends BasePage {
-    @FindBy(xpath = "(//button[@class=\"siCheckButton\"])")
-    private List<WebElement> seeAvailabilityButtons;
 
-    public void clickSeeAvailabilityButton(int index){
-        seeAvailabilityButtons.get(index).click();
-    }
+	@FindBy(xpath = "(//button[@class=\"siCheckButton\"])")
+	private List<WebElement> seeAvailabilityButtons;
+
+	public void clickSeeAvailabilityButton(int index) {
+		seeAvailabilityButtons.get(index).click();
+	}
 
 }

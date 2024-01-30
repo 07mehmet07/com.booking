@@ -16,7 +16,8 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@Given("user is in the booking.com page")
 	public void user_is_in_the_booking_com_page() {
-		DriverManager.getWebDriver().get("baseURL");
+		DriverManager.getWebDriver();
+		BrowserUtils.wait(2);
 		PAGES.getHomePage().clickBookingLink();
 		LOGGER.info("User is navigated to the booking.com page");
 	}

@@ -10,10 +10,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.BrowserUtils;
 import utils.DriverManager;
+import utils.Pages;
 
 public class Hooks {
 
     public static final Logger LOGGER = LogManager.getLogger(Hooks.class);
+    protected static final Pages PAGES = new Pages();
 
     public static Scenario scenario;
 

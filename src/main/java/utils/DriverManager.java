@@ -62,5 +62,4 @@ public class DriverManager {
 			THREAD_LOCAL_DRIVER.remove();
 		}
 	}
-
 }

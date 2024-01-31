@@ -15,10 +15,10 @@ public class HotelsCheckoutPage extends BasePage {
 	@FindBy(xpath = "//input[@name='cardNumber']")
 	private WebElement cardNumberField;
 
-	@FindBy(xpath = "//input[@name='cardNumber']")
+	@FindBy(xpath = "//input[@name='expirationDate']")
 	private WebElement expDateField;
 
-	@FindBy(xpath = "//input[@name='cardNumber']")
+	@FindBy(xpath = "//input[@name='cvv']")
 	private WebElement cvvField;
 
 	@FindBy(xpath = "//span[text()=\"Complete Booking\"]")

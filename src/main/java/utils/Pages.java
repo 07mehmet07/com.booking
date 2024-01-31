@@ -54,5 +54,4 @@ public class Pages {
 	public StaysTabHomepage getStaysTabHomepage() {
 		return staysTabHomepage;
 	}
-
 }

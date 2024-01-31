@@ -53,5 +53,4 @@ public class Hooks {
 		}
 		DriverManager.closeDriver();
 	}
-
 }

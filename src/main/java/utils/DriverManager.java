@@ -56,10 +56,10 @@ public class DriverManager {
 	}
 
 	public static void closeDriver() {
-		WebDriver driver = DriverManager.getWebDriver();
-		if (driver != null) {
-			driver.quit();
+		if (THREAD_LOCAL_DRIVER != null) {
+			THREAD_LOCAL_DRIVER.get().quit();
 			THREAD_LOCAL_DRIVER.remove();
 		}
 	}
+
 }

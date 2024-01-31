@@ -14,7 +14,7 @@ public class ConfigurationManager {
 	static {
 		try {
 			// Location of properties
-			String path = System.getProperty("user.dir") + "/configurations.properties";
+			String path = System.getProperty("user.dir") + "/config.properties";
 			// Getting this file as a stream
 			FileInputStream input = new FileInputStream(path);
 			// Creating an object of Properties class

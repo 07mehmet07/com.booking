@@ -1,11 +1,8 @@
 package utils;
 
-import pages.HotelDetailsPage;
-import pages.HotelInfoPage;
-import pages.HotelSearchPage;
-import pages.HotelsCheckoutPage;
+import pages.carrentalspage.stayspage.*;
+import pages.stayspage.*;
 import lombok.Data;
-import pages.*;
 
 @Data
 public class Pages {
@@ -54,4 +51,5 @@ public class Pages {
 	public StaysTabHomepage getStaysTabHomepage() {
 		return staysTabHomepage;
 	}
+
 }

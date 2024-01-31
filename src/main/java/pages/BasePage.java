@@ -22,7 +22,6 @@ public abstract class BasePage {
 
 	protected Actions actions = new Actions(DRIVER);
 
-
 	/**
 	 * Constructor for the BasePage class. It initializes the page objects using
 	 * PageFactory and sets the implicit wait timeout.

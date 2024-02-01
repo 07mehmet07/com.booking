@@ -22,5 +22,4 @@ public class Hooks {
 		LOGGER.info("TEST FINISHED!!");
 	}
 
-
 }

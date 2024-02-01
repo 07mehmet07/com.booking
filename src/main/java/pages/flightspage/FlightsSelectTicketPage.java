@@ -8,23 +8,45 @@ import java.util.List;
 
 public class FlightsSelectTicketPage extends BasePage {
 
+	@FindBy(css = "button.text-center")
+	List<WebElement> selectTicketButtons;
 
-    @FindBy(css = "button.text-center")
-    List<WebElement> selectTicketButtons;
+	@FindBy(xpath = "//h1[@class='flight-title']/../span[3]")
+	List<WebElement> allOriginCountry;
 
+	@FindBy(css = ".shadow-md.form-select.fs-4")
+	List<WebElement> travelInformationTabs;
 
+	@FindBy(xpath = "//h1[@class='flight-title']/../span[1]")
+	List<WebElement> cabinClassesNames;
 
+	@FindBy(css = ".listResultTabs > button")
+	List<WebElement> optimalFlightsTab;
 
+	public void ClickOnOptimalFlightsTabs(int i) {
+		optimalFlightsTab.get(i - 1).click();
+	}
 
+	public void selectTicketForTravel() {
+		selectTicketButtons.get(0).click();
+	}
 
+	public boolean verifyAllOriginCountryIsCorrect(String departure) {
+		List<String> allMainCountries = allOriginCountry.stream().map(WebElement::getText).toList();
+		return allMainCountries.stream().allMatch(countries -> countries.contains(departure));
+	}
 
-    public void selectTicketForRoundWay(int i){
-        selectTicketButtons.get(0).click();
-    }
+	public boolean verifyAdultNumber(String number) {
+		return travelInformationTabs.get(3).getAttribute("value").contains(number);
+	}
 
+	public boolean verifyChildNumber(String numbers) {
+		return travelInformationTabs.get(4).getAttribute("value").contains(numbers);
+	}
 
-
-
-
+	public boolean verifyAllCabinClassesAreCorrect(String cabinClasses) {
+		List<String> cabinClass = cabinClassesNames.stream().map(WebElement::getText).toList();
+		return cabinClass.stream().allMatch(cabins -> cabins.contains(cabinClasses));
+	}
 
 }

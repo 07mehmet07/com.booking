@@ -9,6 +9,9 @@ import java.util.List;
 
 public class FlightsHomePage extends BasePage {
 
+	@FindBy(css = ".headerList > .headerListItem")
+	List<WebElement> flightsButton;
+
 	@FindBy(css = ".me-3 > input")
 	List<WebElement> travelMode;
 
@@ -30,8 +33,11 @@ public class FlightsHomePage extends BasePage {
 	@FindBy(css = "button.fs-4.mt-5")
 	WebElement doneButton;
 
+	@FindBy(xpath = "(//div/input)[1]")
+	WebElement datePickerForOneWay;
+
 	public void selectTravelMode() {
-		travelMode.get(0).click();
+		travelMode.get(1).click();
 	}
 
 	public void selectFlightClasses(String type) {
@@ -63,6 +69,10 @@ public class FlightsHomePage extends BasePage {
 		activeDaysOfMonth.get(returnDay - 1).click();
 	}
 
+	public void ClickOnDateForOneWay() {
+		datePickerForOneWay.click();
+	}
+
 	public void selectNumbersOfAdult(int number, int k) {
 		for (int i = 0; i < number; i++) {
 			buttonsForAdultAndChild.get(k - 1).click();
@@ -81,6 +91,11 @@ public class FlightsHomePage extends BasePage {
 
 	public void clickOnDoneButton() {
 		doneButton.click();
+	}
+
+	public void getFlightsPage() {
+
+		flightsButton.get(1).click();
 	}
 
 }

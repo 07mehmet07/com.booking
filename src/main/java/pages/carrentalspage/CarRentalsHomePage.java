@@ -9,9 +9,6 @@ import java.util.List;
 
 public class CarRentalsHomePage extends BasePage {
 
-	// This element can be used in the page that defined as the parent of
-	// CarRentalsHomePage
-
 	@FindBy(css = ".headerListItem:last-child")
 	private WebElement carRentalsTab;
 
@@ -24,11 +21,20 @@ public class CarRentalsHomePage extends BasePage {
 	@FindBy(xpath = "//input[@type='date']")
 	private List<WebElement> datesForPickupAndDropOff;
 
-	@FindBy(css = ".form-select")
+	@FindBy(xpath = "//select[@class='form-select']")
 	private List<WebElement> hoursForPickupAndDrop;
 
 	@FindBy(css = ".headerBtn")
 	private WebElement searchCarsButton;
+
+	// @FindBy(css = ".headerDateInput.form-control.fs-5")
+	// private WebElement enterPickupDateField;
+
+	// @FindBy(css = ".headerDateInput.form-control.fs-5.position-relative")
+	// private WebElement enterDropOffDateField;
+
+	@FindBy(xpath = "//h1[text()='Car rental']")
+	private WebElement welcomeHeadingForCarRentalsSearchResultPage;
 
 	public CarRentalsHomePage() {
 
@@ -45,16 +51,32 @@ public class CarRentalsHomePage extends BasePage {
 		return welcomeHeading.equalsIgnoreCase("Rent a Car for Your Trip");
 	}
 
+	/**
+	 * @param date the format of the date should be yyyy-MM-dd
+	 */
+
+	public void setPickupDate(String date) {
+		String className = "headerDateInput.form-control.fs-5";
+		utils.JSUtils.setElementValueByClassName(className, date);
+		welcomeHeadingForCarRentals.click();
+	}
+
+	public void setDropOffDate(String date) {
+		String className = "headerDateInput.form-control.fs-5.position-relative";
+		utils.JSUtils.setElementValueByClassName(className, date);
+		welcomeHeadingForCarRentals.click();
+	}
+
 	public void enterValueIntoPickupLocationField(String placeToPickup) {
 		enterPickupLocationField.clear();
 		enterPickupLocationField.sendKeys(placeToPickup);
 	}
 
-	public void choosePickupDate(String day, String month, String year) {
-		datesForPickupAndDropOff.get(1).click();
-		Select select = new Select(datesForPickupAndDropOff.get(1));
-
-	}
+	// public void choosePickupDate(String day, String month, String year) {
+	// datesForPickupAndDropOff.get(1).click();
+	// Select select = new Select(datesForPickupAndDropOff.get(1));
+	//
+	// }
 
 	/**
 	 * @param pickup Should be entered in military time format . Also, it should be only
@@ -74,6 +96,11 @@ public class CarRentalsHomePage extends BasePage {
 
 	public void clickOnTheSearchCarsButton() {
 		searchCarsButton.click();
+	}
+
+	public boolean isWelcomeHeadingForCarRentalsSearchResultPage() {
+		String welcomeHeading = welcomeHeadingForCarRentalsSearchResultPage.getText();
+		return welcomeHeading.equalsIgnoreCase("Car rental");
 	}
 
 }

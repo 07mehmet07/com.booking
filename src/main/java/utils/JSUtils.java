@@ -22,4 +22,8 @@ public class JSUtils {
 		javascriptExecutor.executeScript("document.querySelector('#" + elementId + "').click()");
 	}
 
+	public static void setElementValueByClassName(String className, String value) {
+		javascriptExecutor.executeScript("document.querySelector('." + className + "').value='" + value + "'");
+	}
+
 }

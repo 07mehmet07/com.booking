@@ -8,27 +8,18 @@ import java.util.List;
 
 public class FlightsFarePage extends BasePage {
 
-    @FindBy(css = "div.icn")
-    List<WebElement> chooseFareButtons;
+	@FindBy(css = "div.icn")
+	List<WebElement> chooseFareButtons;
 
-    @FindBy(css = "button.btn-blue > span")
-    WebElement selectFlyingButton ;
+	@FindBy(css = "button.btn-blue > span")
+	WebElement selectFlyingButton;
 
+	public void ClickOnChooseFareButton(int i) {
+		chooseFareButtons.get(i - 1).click();
+	}
 
-
-
-
-    public void ClickOnChooseFareButton(int i){
-        chooseFareButtons.get(i).click();
-    }
-
-    public void ClickOnSelectFlyingButton(){
-        selectFlyingButton.click();
-    }
-
-
-
-
-
+	public void ClickOnSelectFlyingButton() {
+		selectFlyingButton.click();
+	}
 
 }

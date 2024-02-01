@@ -3,10 +3,9 @@ package pages.stayspage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
-
 import java.util.List;
 
-public class StaysTabHomepage extends BasePage {
+public class HotelsTabHomePage extends BasePage {
 
 	@FindBy(xpath = "//div[@class=\"headerList\"]/div")
 	private List<WebElement> headerList;
@@ -44,6 +43,15 @@ public class StaysTabHomepage extends BasePage {
 	@FindBy(xpath = "//input[@placeholder='Where are you going?']")
 	private WebElement cityFieldButton;
 
+	@FindBy(xpath = "//div[@class='pListTitles']/child::h1")
+	private List<WebElement> quickAndEasyTripPlannerHeaders;
+
+	@FindBy(xpath = "//div[@class='pListTitles']/child::h2")
+	private List<WebElement> quickAndEasyTripPlannersNumbers;
+
+	@FindBy(xpath = "//div[@class='pList']/child::div")
+	private List<WebElement> quickAndEasyTripPlannerList;
+
 	public void selectTheOperationPage(int pageNumber) {
 		if (pageNumber == 1) {
 			headerList.get(0).click();
@@ -75,6 +83,13 @@ public class StaysTabHomepage extends BasePage {
 	public void increaseAdultCount() {
 		datePickerButtonAndResidentsButton.get(1).click();
 		residentsOptionsOfIncreaseSelectors.get(0).click();
+	}
+
+	public void increaseAdultCountForManyTimes(int Number) {
+		datePickerButtonAndResidentsButton.get(1).click();
+		for (int i = 0; i < Number; i++) {
+			residentsOptionsOfIncreaseSelectors.get(0).click();
+		}
 	}
 
 	public void decreaseAdultCount() {
@@ -116,6 +131,28 @@ public class StaysTabHomepage extends BasePage {
 
 	public void clickOnCityField() {
 		cityFieldButton.click();
+	}
+
+	public boolean checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins(String Hotels, String Resorts, String Luxery,
+			String Cabins) {
+
+		return quickAndEasyTripPlannersNumbers.get(0).getText().equals(Hotels)
+				|| quickAndEasyTripPlannersNumbers.get(1).getText().equals(Resorts)
+				|| quickAndEasyTripPlannersNumbers.get(2).getText().equals(Luxery)
+				|| quickAndEasyTripPlannersNumbers.get(3).getText().equals(Cabins);
+	}
+
+	public void clickOnOptionInQuickPlanner(String kindOfTrip) {
+		switch (kindOfTrip) {
+			case "Hotels":
+				actions.moveToElement(quickAndEasyTripPlannerList.get(0)).click();
+			case "Resorts":
+				actions.moveToElement(quickAndEasyTripPlannerList.get(1)).click();
+			case "Luxery":
+				actions.moveToElement(quickAndEasyTripPlannerList.get(2)).click();
+			case "Cabins":
+				actions.moveToElement(quickAndEasyTripPlannerList.get(3)).click();
+		}
 	}
 
 }

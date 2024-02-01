@@ -10,6 +10,11 @@ import org.assertj.core.api.Assertions;
 import utils.BrowserUtils;
 import utils.DriverManager;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	public static final Logger LOGGER = LogManager.getLogger(HotelBookingSteps.class);
@@ -22,14 +27,14 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@And("types New York in the search bar")
 	public void types_new_york_in_the_search_bar() {
-		PAGES.getStaysTabHomepage().clickOnCityField();
-		PAGES.getStaysTabHomepage().sendKeysToDestination("New York");
+		PAGES.getHotelsTabHomePage().clickOnCityField();
+		PAGES.getHotelsTabHomePage().sendKeysToDestination("New York");
 		LOGGER.info("User sends New York as a destination");
 	}
 
-	@And("chooses next month’s 8'th day to 10'th day")
+	@And("chooses next month's 8'th day to 10'th day")
 	public void chooses_next_month_s_8_day_to_10_day() {
-		PAGES.getStaysTabHomepage().clickDatePickerAndSelect(1);
+		PAGES.getHotelsTabHomePage().clickDatePickerAndSelect(1);
 		LOGGER.info("User selects days 8 to 10");
 	}
 
@@ -40,7 +45,7 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@And("clicks search hotels button")
 	public void clicks_search_hotels_button() {
-		PAGES.getStaysTabHomepage().clickOnSearchButton();
+		PAGES.getHotelsTabHomePage().clickOnSearchButton();
 		LOGGER.info("User Clicks on the Search Button");
 	}
 
@@ -55,13 +60,13 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		LOGGER.info("User clicks to See Availability Button");
 	}
 
-	@And("in the mentioned hotel’s description page user clicks reserve or book now")
+	@And("in the mentioned hotel's description page user clicks reserve or book now")
 	public void in_the_mentioned_hotel_s_description_page_user_clicks_reserve_or_book_now() {
 		PAGES.getHotelInfoPage().clickBookNowButton();
 		LOGGER.info("User in the Hotel's Info Page and clicks book now button");
 	}
 
-	@And("user sees checkout process’ first page")
+	@And("user sees checkout process' first page")
 	public void user_sees_checkout_process_first_page() {
 		LOGGER.info("User in the Hotel's Detail Page");
 	}
@@ -107,11 +112,11 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@Then("user should see checkout dialogue and click close button properly")
 	public void user_should_see_checkout_dialogue_and_click_close_button_properly() {
-		boolean result = PAGES.getStaysTabHomepage().isTheDialogueDisplayed();
+		boolean result = PAGES.getHotelsTabHomePage().isTheDialogueDisplayed();
 		Assertions.assertThat(result).isTrue();
 		LOGGER.info("User sees the dialogue is displayed");
 		BrowserUtils.scrollDownWithPageDownButton(1);
-		PAGES.getStaysTabHomepage().closeTheDialog();
+		PAGES.getHotelsTabHomePage().closeTheDialog();
 	}
 
 	@And("verify user sees booking.com homepage")
@@ -121,6 +126,84 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 			.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
 		Assertions.assertThat(result).isTrue();
 		LOGGER.info("User is navigated to the home page");
+	}
+
+	// Duplicate Test
+	public static List<String> hotelTagsList = new ArrayList<>();
+
+	public static Set<String> hotelTagsSet = new HashSet<>();
+
+	@When("automation collects all hotel names by passing through pages")
+	public void automation_collects_all_hotel_names_by_passing_through_pages() {
+		hotelTagsList = PAGES.getHotelSearchPage().getHotelTags();
+		LOGGER.debug("There are " + hotelTagsList.size() + " hotel cards in total website");
+		hotelTagsSet.addAll(hotelTagsList);
+		LOGGER.debug("There are " + hotelTagsSet.size() + " hotel cards in control set");
+	}
+
+	@Then("an assertion is made to check whether there are any duplicate")
+	public void an_assertion_is_made_to_check_whether_there_are_any_duplicate() {
+		Assertions.assertThat(hotelTagsList.size()).isEqualTo(hotelTagsSet.size());
+		LOGGER.info("User sees that there are only unique hotel tags");
+	}
+
+	// Brand Checkbox Test
+
+	public static String brandName;
+
+	public static ArrayList<String> names;
+
+	@When("user clicks a random brand name button")
+	public void user_clicks_a_random_brand_name_button() {
+		brandName = PAGES.getHotelSearchPage().checkBoxChooser();
+		LOGGER.debug("User clicks a random checkbox");
+	}
+
+	@When("clicks search button")
+	public void clicks_search_button() {
+		PAGES.getHotelSearchPage().clickSearchButton();
+		LOGGER.debug("User clicks search button");
+	}
+
+	@Then("user should see only same brand hotels as the checkbox")
+	public void user_should_see_only_same_brand_hotels_as_the_checkbox() {
+		names = PAGES.getHotelSearchPage().getWholeNames();
+		for (String name : names) {
+			Assertions.assertThat(brandName).isEqualTo(name);
+		}
+		LOGGER.info("User sees only mentioned hotel brand");
+	}
+
+	// QuickAndEasyTripPlannerTest
+	@When("automation collects the numbers of Hotels Resorts Luxery and Cabins and Checks the numbers validation")
+	public void automation_collects_the_numbers_of_hotels_resorts_luxery_and_cabins_and_checks_the_numbers_validation() {
+		BrowserUtils.scrollDownWithPageDownButton(3);
+		BrowserUtils.wait(0.5);
+		LOGGER.info("Hotels,Resorts,Luxery and Cabins numbers must be true!");
+		PAGES.getHotelsTabHomePage()
+			.checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins("9361 hotels", "9583 hotels", "9361 hotels",
+					"8695 hotels");
+		LOGGER.debug("All Item's numbers are correct!");
+		BrowserUtils.wait(1.0);
+	}
+
+	@When("click to the Hotels cabins tab")
+	public void click_to_the_hotels_cabins_tab() {
+		LOGGER.info("User have to navigate to the Hotel Serch Page for Cabins");
+		PAGES.getHotelsTabHomePage().clickOnOptionInQuickPlanner("Cabins");
+	}
+
+	@Then("user should see the Cabin Hotels in new page")
+	public void user_should_see_the_cabin_hotels_in_new_page() {
+		Assertions.assertThat(PAGES.getHotelSearchPage().isAnyHotelTitleDisplayed()).isTrue();
+		LOGGER.debug("Cabins Page do not show any Hotel!");
+	}
+
+	// Validation Test of booking one room for twenty adults
+	@And("choose the adult option for twenty times")
+	public void chooseTheAdultOptionForTwentyTimes() {
+		LOGGER.debug("User can not choose twenty adult for one room.");
+		PAGES.getHotelsTabHomePage().increaseAdultCountForManyTimes(20);
 	}
 
 }

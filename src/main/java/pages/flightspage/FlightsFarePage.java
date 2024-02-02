@@ -8,14 +8,16 @@ import java.util.List;
 
 public class FlightsFarePage extends BasePage {
 
-	@FindBy(css = "div.icn")
+	@FindBy(className = "ms-3")
 	List<WebElement> chooseFareButtons;
 
 	@FindBy(css = "button.btn-blue > span")
 	WebElement selectFlyingButton;
 
-	public void ClickOnChooseFareButton(int i) {
-		chooseFareButtons.get(i - 1).click();
+	public void ClickOnChooseFareButton(String fare) {
+		List<String> selectsFare = chooseFareButtons.stream().map(WebElement::getText).toList();
+		chooseFareButtons.get(selectsFare.indexOf(fare)).click();
+
 	}
 
 	public void ClickOnSelectFlyingButton() {

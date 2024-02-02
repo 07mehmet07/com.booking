@@ -1,5 +1,6 @@
 package pages.flightspage;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -9,93 +10,62 @@ import java.util.List;
 
 public class FlightsHomePage extends BasePage {
 
-	@FindBy(css = ".headerList > .headerListItem")
-	List<WebElement> flightsButton;
+	@FindBy(css = "label.me-3 > span")
+	List<WebElement> typeOfFlights;
 
-	@FindBy(css = ".me-3 > input")
-	List<WebElement> travelMode;
+	@FindBy(css = "select.headerSearchInput:nth-child(1)")
+	WebElement flightTicketType;
 
-	@FindBy(css = "select.headerSearchInput.w-100")
-	List<WebElement> classesAndCities;
+	@FindBy(css = "select.headerSearchInput:nth-child(2)")
+	WebElement fromDropdown;
 
-	@FindBy(css = "button.rdrDay")
-	List<WebElement> flightDate;
+	@FindBy(xpath = "(//div[@class='me-3'])[2]/../select")
+	WebElement toDropdown;
 
-	@FindBy(css = "button.rdrNextButton")
-	WebElement nextButton;
+	@FindBy(css = ".headerSearchText")
+	WebElement dateField;
 
-	@FindBy(css = "button.optionCounterButton")
-	List<WebElement> buttonsForAdultAndChild;
+	@FindBy(css = "button.headerBtn")
+	WebElement searchButton;
 
-	@FindBy(css = "button.headerBtn.h-100")
-	WebElement searchFlightsButton;
+	@FindBy(xpath = "//div/select[@class='form-select fs-4 p-3']")
+	List<WebElement> birthdateSelectors;
 
-	@FindBy(css = "button.fs-4.mt-5")
-	WebElement doneButton;
+	@FindBy(xpath = "//span[text()='Flights']")
+	WebElement flightsTab;
 
-	@FindBy(xpath = "(//div/input)[1]")
-	WebElement datePickerForOneWay;
-
-	public void selectTravelMode() {
-		travelMode.get(1).click();
+	public void selectTypeOfFlights(String typeName){
+		List<String> typeNames = typeOfFlights.stream().map(WebElement::getText).toList();
+		typeOfFlights.get(typeNames.indexOf(typeName)).click();
 	}
 
-	public void selectFlightClasses(String type) {
-		Select select = new Select(classesAndCities.get(0));
-		select.selectByValue(type);
+	public void selectFlightTicketType(String type){
+		Select select = new Select(flightTicketType);
+		select.selectByVisibleText(type);
 	}
 
-	public void selectDepartureCity(String originCountry) {
-		Select select = new Select(classesAndCities.get(1));
-		select.selectByValue(originCountry);
+	public void selectFromCountry(String country){
+		Select select = new Select(fromDropdown);
+		select.selectByVisibleText(country);
 	}
 
-	public void selectDestinationCity(String targetCountry) {
-		Select select = new Select(classesAndCities.get(2));
-		select.selectByValue(targetCountry);
+	public void selectToCountry(String country){
+		Select select = new Select(toDropdown);
+		select.selectByVisibleText(country);
 	}
 
-	public void clickOnNextButtonForDate(int i) {
-		for (int j = 0; j < i; j++) {
-			nextButton.click();
-		}
+	public void selectDateFromOneWay(String date){
+		actions.moveToElement(dateField).click().release().perform();
+		JavascriptExecutor js = (JavascriptExecutor) DRIVER;
+		js.executeScript("document.querySelector('input.form-select').value = '2024-05-12';");
 	}
 
-	public void selectDateOfFlight(int departureDay, int returnDay) {
-		List<WebElement> activeDaysOfMonth = flightDate.stream()
-			.filter(days -> !days.getAttribute("class").contains("rdrDayPassive"))
-			.toList();
-		activeDaysOfMonth.get(departureDay - 1).click();
-		activeDaysOfMonth.get(returnDay - 1).click();
+	public void clickOnFlights(){
+		flightsTab.click();
 	}
 
-	public void ClickOnDateForOneWay() {
-		datePickerForOneWay.click();
-	}
-
-	public void selectNumbersOfAdult(int number, int k) {
-		for (int i = 0; i < number; i++) {
-			buttonsForAdultAndChild.get(k - 1).click();
-		}
-	}
-
-	public void selectNumbersOfChild(int numbers, int j) {
-		for (int i = 0; i < numbers; i++) {
-			buttonsForAdultAndChild.get(j - 1).click();
-		}
-	}
-
-	public void clickOnSearchButton() {
-		searchFlightsButton.click();
-	}
-
-	public void clickOnDoneButton() {
-		doneButton.click();
-	}
-
-	public void getFlightsPage() {
-
-		flightsButton.get(1).click();
+	public void clickOnSearchButton(){
+		actions.moveToElement(searchButton).click().release().perform();
 	}
 
 }

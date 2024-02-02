@@ -86,5 +86,5 @@ As we embark on this noble quest, let our code be as sturdy as the walls of a ca
 
 For any inquiries or to pledge allegiance, send a raven to our royal court at inarbooking.automation@royalcode.com.
 
-# In the spirit of chivalry and precision,
+# In the spirit of chivalry and precision!
 # 👑👑👑👑 Long Live The Kings!!! 👑👑👑

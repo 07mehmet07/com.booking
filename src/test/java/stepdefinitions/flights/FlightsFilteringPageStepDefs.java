@@ -19,4 +19,8 @@ public class FlightsFilteringPageStepDefs extends BaseStep {
     }
 
 
+    @And("the user click on #{int} select return ticket button of the fastest flight")
+    public void theUserClickOnSelectReturnTicketButtonOfTheFastestFlight(int numberOfTicket) {
+            PAGES.getFlightsSelectTicketPage().selectTicketForTravel(numberOfTicket);
+    }
 }

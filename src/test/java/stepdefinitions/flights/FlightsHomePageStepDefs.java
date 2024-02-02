@@ -33,11 +33,23 @@ public class FlightsHomePageStepDefs extends BaseStep {
         //PAGES.getFlightsHomePage().selectDateFromOneWay(date);
     }
 
-    @When("the user clicks on the search flights button")
+    @And("the user clicks on the search flights button")
     public void the_user_clicks_on_the_search_flights_button() {
+
         PAGES.getFlightsHomePage().clickOnSearchButton();
     }
 
+
+    @And("the user selects {string} flight class")
+    public void theUserSelectsFlightClass(String flightClass) {
+        PAGES.getFlightsHomePage().selectFlightTicketType(flightClass);
+    }
+    
+    
+    @And("The user selects #{int} as departure date and #{int} as return date")
+    public void theUserSelectsAsDepartureDateAndAsReturnDate(int departureDay, int returnDay) {
+        PAGES.getFlightsHomePage().selectDaysOnTheDatePicker(departureDay,returnDay);
+    }
 
 
 }

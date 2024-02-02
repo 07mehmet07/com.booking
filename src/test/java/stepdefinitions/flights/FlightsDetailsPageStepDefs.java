@@ -27,11 +27,13 @@ public class FlightsDetailsPageStepDefs extends BaseStep {
 
     @And("the user select {string} as gender for #{int} passenger")
     public void theUserSelectAsGenderForPassenger(String gender, int numberOfPassenger) {
-       // PAGES.getFlightsDetailsPage().selectGender(gender,numberOfPassenger);
+        PAGES.getFlightsDetailsPage().selectGender(gender,numberOfPassenger);
+        BrowserUtils.wait(2);
     }
 
     @And("the user select birthdate as {string} for #{int} passenger")
     public void theUserSelectBirthdateAsForPassenger(String birthDate, int numOfPassenger) {
+        BrowserUtils.scrollDownWithPageDownButton(1);
         PAGES.getFlightsDetailsPage().selectBirthDate(birthDate, numOfPassenger);
     }
 
@@ -40,10 +42,6 @@ public class FlightsDetailsPageStepDefs extends BaseStep {
     public void theUserClicksOnSelectExtrasButton() {
         PAGES.getFlightsDetailsPage().clickOnSelectExtrasButton();
     }
-
-
-
-
 
 }
 

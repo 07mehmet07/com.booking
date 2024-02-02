@@ -1,10 +1,10 @@
 @flight-booking
-Feature: Verification Flight booking process
+Feature: Verification Flight booking process as end to end test
 
   Background:
     Given the user is on the Inar Academy homepage and clicks on the Booking link
 
-  Scenario Outline: This Test Case  validates  the functionality of flight booking  process.
+  Scenario Outline: This Test Case validates the functionality of flight booking  process.
 
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -13,26 +13,18 @@ Feature: Verification Flight booking process
     And the user selects "<destination country>" as destination country
     And The user selects #5 as departure date and #15 as return date
     And the user clicks on the search flights button
-
-
     And the user clicks on the "Fastest" tab on filtering page
     And the user click on #1 see availability button of the fastest flight
     And the user click on #2 select return ticket button of the fastest flight
-
     And the user select "Main" tab and click on Select Who ‘ s flying
-
-
     And the user enter "<email>" to the contact email input area
     And the user enters phone number as "<phone number>"
     And the user enters as "Inar" first name and as "Academy" last name for #1 passenger
     And the user select "Male" as gender for #1 passenger
     And the user select birthdate as "1990.12.12" for #1 passenger
     And the user clicks on select extras button
-
     And the user select Add Extra Legroom Seat for extra
     And The user click on go to checkout button
-
-
     And The user enter "<cardholder name>" as cardholder's name
     And The user enter "1234567891234567" as card number
     And The user enter "12/27" as expiration date

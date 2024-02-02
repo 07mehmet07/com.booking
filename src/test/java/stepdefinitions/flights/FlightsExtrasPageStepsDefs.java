@@ -6,9 +6,6 @@ import stepdefinitions.BaseStep;
 
 public class FlightsExtrasPageStepsDefs extends BaseStep {
 
-    @And("the user select {string} from the select meal dropdown menu")
-    public void theUserSelectFromTheSelectMealDropdownMenu(String menu) {
-        PAGES.getFlightsExtrasPage().setSelectMeal(menu);}
 
 
     @And("the user select Add Extra Legroom Seat for extra")

@@ -30,7 +30,7 @@ public class FlightsSelectTicketPage extends BasePage {
 	}
 
 	public void selectTicketForTravel(int i) {
-		selectTicketButtons.get(i).click();
+		selectTicketButtons.get(i - 1).click();
 	}
 
 	public boolean verifyAllOriginCountryIsCorrect(String departure) {

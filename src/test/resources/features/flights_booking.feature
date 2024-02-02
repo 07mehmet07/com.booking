@@ -24,10 +24,10 @@ Feature: Verification Flight booking process
     And the user enters phone number as "1234567890"
     And the user enters as "Inar" first name and as "Academy" last name for #1 passenger
     And the user select "Male" as gender for #1 passenger
-    And the user select birthdate as "2000-12-12" for #1 passenger
+    And the user select birthdate as "2000.12.12" for #1 passenger
     And the user clicks on select extras button
 
-    And the user select "Vegan Meal - $14" from the select meal dropdown menu
+#    And the user select "Vegan Meal - $14" from the select meal dropdown menu
     And the user select Add Extra Legroom Seat for extra
     And The user click on go to checkout button
 

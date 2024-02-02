@@ -23,12 +23,14 @@ public class FlightsSelectTicketPage extends BasePage {
 	@FindBy(css = ".listResultTabs > button")
 	List<WebElement> optimalFlightsTab;
 
-	public void ClickOnOptimalFlightsTabs(int i) {
-		optimalFlightsTab.get(i - 1).click();
+	public void ClickOnOptimalFlightsTabs(String optimalFlightsName) {
+		List<String> names = optimalFlightsTab.stream().map(WebElement::getText).toList();
+		actions.moveToElement(optimalFlightsTab.get(names.indexOf(optimalFlightsName))).click().release().perform();
+
 	}
 
-	public void selectTicketForTravel() {
-		selectTicketButtons.get(0).click();
+	public void selectTicketForTravel(int i) {
+		selectTicketButtons.get(i).click();
 	}
 
 	public boolean verifyAllOriginCountryIsCorrect(String departure) {

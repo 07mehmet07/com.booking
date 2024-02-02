@@ -9,8 +9,11 @@ import java.util.List;
 
 public class FlightsExtrasPage extends BasePage {
 
-	@FindBy(xpath = "//select[@class='form-select fs-4']")
-	WebElement selectMeal;
+	@FindBy(css = "select.fs-4")
+	private WebElement selectMeal;
+
+	@FindBy(css = "select.fs-4>option")
+	private List<WebElement> namesOfMeals;
 
 	@FindBy(xpath = "//div/input[@class='form-check-input']")
 	List<WebElement> extras;
@@ -18,9 +21,10 @@ public class FlightsExtrasPage extends BasePage {
 	@FindBy(css = ".btn.btn-blue>.fs-4")
 	WebElement goToCheckoutButton;
 
-	public void setSelectMeal(int i) {
-		Select select = new Select(selectMeal);
-		select.selectByIndex(i - 1);
+	public void setSelectMeal(String mealName) {
+		List<String> listOfMeals = namesOfMeals.stream().map(meal -> meal.getAttribute("value")).toList();
+		Select selectMeals = new Select(selectMeal);
+		selectMeals.selectByIndex(listOfMeals.indexOf(mealName));
 	}
 
 	public void clickOnExtras(int i) {

@@ -7,13 +7,15 @@ import stepdefinitions.BaseStep;
 
 public class FlightsFarePageStepDefs extends BaseStep {
 
-	private static final Logger LOGGER = LogManager.getLogger(FlightsFarePageStepDefs.class);
+    private static final Logger LOGGER = LogManager.getLogger(FlightsCheckAndPayPageStepDefs.class);
 
-	@And("the user select {string} tab and click on Select Who ‘ s flying")
-	public void theUserSelectTabAndClickOnSelectWhoSFlying(String fare) {
+    @And("the user select {string} tab and click on Select Who ‘ s flying")
+    public void theUserSelectTabAndClickOnSelectWhoSFlying(String fare) {
 
-		PAGES.getFlightsFarePage().ClickOnChooseFareButton(fare);
-		PAGES.getFlightsFarePage().ClickOnSelectFlyingButton();
-	}
+        PAGES.getFlightsFarePage().ClickOnChooseFareButton(fare);
+        PAGES.getFlightsFarePage().ClickOnSelectFlyingButton();
+        LOGGER.info("The user selects fare and clicks on Select Who's Flying button");
+
+    }
 
 }

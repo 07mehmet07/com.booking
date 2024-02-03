@@ -32,7 +32,7 @@ Feature: Verification Flight booking process
     And The user clicks on close button
 
 
-  @verify_adult
+  @functionalityTests
   Scenario: This test Case verify that adults and children numbers are 26 adult and 12 children as expected
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -45,7 +45,7 @@ Feature: Verification Flight booking process
     Then verify that adults and children numbers are "26" adult and "12" children as expected
 
 
-  @verify_return_date
+  @functionalityTests
   Scenario: This test Case verify that all the return tickets dates are 12 February 2024
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -59,7 +59,7 @@ Feature: Verification Flight booking process
     Then verify that all the return tickets dates are "12" February
 
 
-  @verify_departure_country
+  @functionalityTests
   Scenario: This test Case Verify that total price is correct
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -72,7 +72,7 @@ Feature: Verification Flight booking process
     Then Verify that origin main "Canada" as expected
 
 
-  @verify_ticket_date
+  @functionalityTests
   Scenario: This Test Case  validates  the functionality of flight booking  process.
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -83,7 +83,7 @@ Feature: Verification Flight booking process
     Then verify that all the tickets dates are "06"
 
 
-  @verify_ticket_type
+  @functionalityTests
   Scenario: This Test Case  validates  the functionality of flight booking  process.
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio

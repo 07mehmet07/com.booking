@@ -1,4 +1,4 @@
-@e2e
+@endToEndTests
 Feature: Verify that all processes of the car rental pages function properly.
   As a user, I want to enter all the required information correctly so that I can rent a car.
 

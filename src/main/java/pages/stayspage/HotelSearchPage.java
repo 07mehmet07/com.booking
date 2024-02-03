@@ -1,5 +1,6 @@
 package pages.stayspage;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,6 +41,9 @@ public class HotelSearchPage extends BasePage {
 
 	@FindBy(css = "span.siCancelOpSubtitle")
 	private List<WebElement> hotelCancelOpSubtitle;
+
+	@FindBy(css = "span.siPrice")
+	private List<WebElement> hotelPrices;
 
 	@FindBy(css = "button.pagination-button-booking")
 	private List<WebElement> paginationButtons;
@@ -83,7 +87,7 @@ public class HotelSearchPage extends BasePage {
 		actions.moveToElement(paginationButtons.get(page)).build().perform();
 		wait.until(ExpectedConditions.elementToBeClickable(paginationButtons.get(page)));
 		actions.click(paginationButtons.get(page)).build().perform();
-		BrowserUtils.wait(0.5);
+		BrowserUtils.wait(1);
 	}
 
 	public String checkBoxChooser() {
@@ -112,6 +116,34 @@ public class HotelSearchPage extends BasePage {
 
 	public boolean isAnyHotelTitleDisplayed() {
 		return hotelTitles.isEmpty();
+	}
+
+	public void increaseMinPriceBy50() {
+		actions.keyDown(Keys.TAB).keyDown(Keys.TAB).keyDown(Keys.TAB).keyDown(Keys.ARROW_RIGHT).build().perform();
+	}
+
+	public ArrayList<Integer> getWholePrices() {
+		ArrayList<Integer> prices = new ArrayList<>();
+		for (int i = 0; i < paginationButtons.size(); i++) {
+			clickPageButton(i);
+			for (int j = 0; j < hotelTitles.size(); j++) {
+				prices.add(Integer.parseInt(hotelPrices.get(j).getText().replace("$", "")));
+			}
+		}
+		return prices;
+	}
+
+	public void decreaseMaxPriceTo50() {
+		actions.keyDown(Keys.TAB)
+				.keyDown(Keys.TAB)
+				.keyDown(Keys.TAB)
+				.keyDown(Keys.TAB)
+				.build()
+				.perform();
+		for (int i = 0; i < 200; i++) {
+			actions.keyDown(Keys.ARROW_LEFT).build().perform();
+		}
+		actions.keyDown(Keys.ARROW_RIGHT).build().perform();
 	}
 
 }

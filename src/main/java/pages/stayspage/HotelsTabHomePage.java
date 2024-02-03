@@ -3,6 +3,8 @@ package pages.stayspage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import utils.BrowserUtils;
+
 import java.util.List;
 
 public class HotelsTabHomePage extends BasePage {
@@ -51,6 +53,12 @@ public class HotelsTabHomePage extends BasePage {
 
 	@FindBy(xpath = "//div[@class='pList']/child::div")
 	private List<WebElement> quickAndEasyTripPlannerList;
+
+	@FindBy(xpath = "//*[@id=\"splide01-slide01\"]/div/div/a")
+	private WebElement findAStayButton;
+
+	@FindBy(xpath = "//h1[contains(text(),'404 Not Found')]")
+	private WebElement errorNotFoundHeader;
 
 	public void selectTheOperationPage(int pageNumber) {
 		if (pageNumber == 1) {
@@ -153,6 +161,16 @@ public class HotelsTabHomePage extends BasePage {
 			case "Cabins":
 				actions.moveToElement(quickAndEasyTripPlannerList.get(3)).click();
 		}
+	}
+
+	public void clickOnFindAStayButton() {
+		actions.moveToElement(findAStayButton).click().perform();
+		BrowserUtils.wait(0.5);
+	}
+
+	public String isTheErrorMessageDisplayed() {
+		BrowserUtils.wait(0.5);
+		return errorNotFoundHeader.getText();
 	}
 
 }

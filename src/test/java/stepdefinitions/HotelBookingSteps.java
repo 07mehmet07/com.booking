@@ -101,7 +101,7 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		BrowserUtils.scrollUpWithPageUpButton(2);
 		PAGES.getHotelsCheckoutPage().fillPhoneNumberField("5555551234");
 		BrowserUtils.scrollDownWithPageDownButton(1);
-		PAGES.getHotelsCheckoutPage().fillCardHoldersNameField("Tarıq Jake Gulbas");
+		PAGES.getHotelsCheckoutPage().fillCardHoldersNameField("TarÄ±q Jake Gulbas");
 		BrowserUtils.scrollDownWithPageDownButton(1);
 		PAGES.getHotelsCheckoutPage().fillCardNumberField("1234123412341234");
 		PAGES.getHotelsCheckoutPage().fillExpDateField("11/28");
@@ -122,8 +122,8 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 	@And("verify user sees booking.com homepage")
 	public void verify_user_sees_booking_com_homepage() {
 		boolean result = DriverManager.getWebDriver()
-			.getCurrentUrl()
-			.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
+				.getCurrentUrl()
+				.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
 		Assertions.assertThat(result).isTrue();
 		LOGGER.info("User is navigated to the home page");
 	}
@@ -181,8 +181,8 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		BrowserUtils.wait(0.5);
 		LOGGER.info("Hotels,Resorts,Luxery and Cabins numbers must be true!");
 		PAGES.getHotelsTabHomePage()
-			.checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins("9361 hotels", "9583 hotels", "9361 hotels",
-					"8695 hotels");
+				.checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins("9361 hotels", "9583 hotels", "9361 hotels",
+						"8695 hotels");
 		LOGGER.debug("All Item's numbers are correct!");
 		BrowserUtils.wait(1.0);
 	}
@@ -199,11 +199,136 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		LOGGER.debug("Cabins Page do not show any Hotel!");
 	}
 
-	// Validation Test of booking one room for twenty adults
+	// Validation Test of booking one room for twenty adults Test
 	@And("choose the adult option for twenty times")
 	public void chooseTheAdultOptionForTwentyTimes() {
 		LOGGER.debug("User can not choose twenty adult for one room.");
 		PAGES.getHotelsTabHomePage().increaseAdultCountForManyTimes(20);
+	}
+
+	// Min Price Functionality Test
+	public static List<Integer> prices = new ArrayList<>();
+
+	@Given("user increase min price to fifty dollars")
+	public void user_increase_min_price_to_fifty_dollars() {
+		PAGES.getHotelSearchPage().increaseMinPriceBy50();
+		LOGGER.debug("User increased min price to $50");
+	}
+
+	@Then("user should see only hotels with min fifty dollars price")
+	public void user_should_see_only_hotels_with_min_fifty_dollars_price() {
+		prices = PAGES.getHotelSearchPage().getWholePrices();
+		for (int price : prices) {
+			Assertions.assertThat(price).isEqualTo(50);
+		}
+		LOGGER.info("User sees only hotels with $50");
+	}
+
+	// Max Price Functionality Test
+
+	@Given("user increase max price to fifty dollars")
+	public void user_increase_max_price_to_fifty_dollars() {
+		prices = null;
+		PAGES.getHotelSearchPage().decreaseMaxPriceTo50();
+		LOGGER.debug("User increased max price to $50");
+	}
+
+	@Then("user should see only hotels with max fifty dollars price")
+	public void user_should_see_only_hotels_with_max_fifty_dollars_price() {
+		prices = PAGES.getHotelSearchPage().getWholePrices();
+		for (int price : prices) {
+			Assertions.assertThat(price).isEqualTo(50);
+		}
+		LOGGER.info("User sees only hotels with $50");
+	}
+
+	// Invalid credentials test
+	@Given("types {string} in the search bar")
+	public void types_in_the_search_bar(String city) {
+		PAGES.getHotelsTabHomePage().clickOnCityField();
+		PAGES.getHotelsTabHomePage().sendKeysToDestination(city);
+		LOGGER.info("User sends " + city + " as a destination");
+	}
+
+	@When("user fills {string}, {string}, {string} fields")
+	public void user_fills_fields(String firstName, String lastName, String email) {
+		PAGES.getHotelDetailsPage().fillFirstNameField(firstName);
+		PAGES.getHotelDetailsPage().fillLastNameField(lastName);
+		PAGES.getHotelDetailsPage().fillEmailField(email);
+		BrowserUtils.scrollDownWithPageDownButton(1);
+	}
+
+	@When("in the final details page user fills {string}, {string}, {string}, {string} afterwards clicks complete booking button")
+	public void in_the_final_details_page_user_fills_afterwards_clicks_complete_booking_button(String phoneNumber,
+																							   String cardHoldersName, String cardNumber, String cvc) {
+		BrowserUtils.scrollUpWithPageUpButton(2);
+		PAGES.getHotelsCheckoutPage().fillPhoneNumberField(phoneNumber);
+		BrowserUtils.scrollDownWithPageDownButton(1);
+		PAGES.getHotelsCheckoutPage().fillCardHoldersNameField(cardHoldersName);
+		BrowserUtils.scrollDownWithPageDownButton(1);
+		PAGES.getHotelsCheckoutPage().fillCardNumberField(cardNumber);
+		PAGES.getHotelsCheckoutPage().fillExpDateField("11/28");
+		PAGES.getHotelsCheckoutPage().fillCvvField(cvc);
+		PAGES.getHotelsCheckoutPage().clickCompleteBookingButton();
+		LOGGER.info("User filled payment credentials in the page and clicked complete button");
+	}
+
+	@Then("user should not see checkout dialogue and so will not be able to click close button properly")
+	public void user_should_not_see_checkout_dialogue_and_so_will_not_be_able_to_click_close_button_properly() {
+		try {
+			boolean result = PAGES.getHotelsTabHomePage().isTheDialogueDisplayed();
+			LOGGER.debug("User sees the dialogue is displayed");
+			Assertions.fail("Dialogue is displayed");
+			BrowserUtils.scrollDownWithPageDownButton(1);
+			PAGES.getHotelsTabHomePage().closeTheDialog();
+		}
+		catch (Exception ex) {
+			Assertions.assertThat(true).isTrue();
+			LOGGER.info("The dialogue is not displayed");
+		}
+	}
+
+	// Validation Test of FÄ°ndAStay at Offers Test
+	@And("user click to the find a stay button")
+	public void user_click_to_the_find_a_stay_button() {
+		LOGGER.info("User clicks to FindAStay button for navigate to page");
+		PAGES.getHotelsTabHomePage().clickOnFindAStayButton();
+	}
+
+	@Then("user have to reach Offering hotels")
+	public void user_have_to_reach_offering_hotels() {
+		LOGGER.debug("User have to seee offering hotels in the page ");
+		String errorMessageDisplayed = PAGES.getHotelsTabHomePage().isTheErrorMessageDisplayed();
+		Assertions.assertThat(errorMessageDisplayed).isEqualTo("404 Not Found");
+	}
+
+	// functionality of destinationHotelField Test
+	@And("types numbers in the search bar")
+	public void types_numbers_in_the_search_bar() {
+		LOGGER.debug("User can not enter numbers to Destination field");
+		PAGES.getHotelsTabHomePage().sendKeysToDestination("12354678");
+	}
+
+	// phone Number SelectionButton validation Test
+	@And("in the final details page user selects US and fill the phone number")
+	public void in_the_final_details_page_user_selects_us_and_fill_the_phone_number() {
+		BrowserUtils.scrollUpWithPageUpButton(2);
+		LOGGER.info("user selects phoneCountry as US and enters vlid phone Number for US");
+		PAGES.getHotelsCheckoutPage().selectPhoneCountry("US");
+		PAGES.getHotelsCheckoutPage().fillPhoneNumberField("5555551234");
+		BrowserUtils.wait(0.5);
+	}
+
+	@And("user change selection to Fr")
+	public void user_change_selection_to_fr() {
+		LOGGER.info("User changes the selection to FR");
+		PAGES.getHotelsCheckoutPage().selectPhoneCountry("FR");
+	}
+
+	@Then("user shows the invalid phone number message")
+	public void user_shows_the_invalid_phone_number_message() {
+		LOGGER.debug("After changing selection of Country from US to FR user get Invalid phone number message.");
+		PAGES.getHotelsCheckoutPage().isDisplayedInvalidPhoneNumberMessage();
 	}
 
 }

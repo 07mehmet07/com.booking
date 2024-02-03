@@ -1,10 +1,13 @@
 package stepdefinitions.flights;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import stepdefinitions.BaseStep;
 import utils.BrowserUtils;
+
+import static org.assertj.core.api.BDDAssertions.then;
 
 
 public class FlightsFilteringPageStepDefs extends BaseStep {
@@ -24,7 +27,6 @@ public class FlightsFilteringPageStepDefs extends BaseStep {
 		PAGES.getFlightsSelectTicketPage().selectTicketForTravel(numberOfTicket);
 		LOGGER.info("The user clicks on See Availability button ");
 
-
 	}
 
 
@@ -32,5 +34,30 @@ public class FlightsFilteringPageStepDefs extends BaseStep {
 	public void theUserClickOnSelectReturnTicketButtonOfTheFastestFlight(int numberOfTicket) {
 		PAGES.getFlightsSelectTicketPage().selectTicketForTravel(numberOfTicket);
 		LOGGER.info("The user clicks on return ticket button");
+	}
+
+	@Then("verify that all the return tickets dates are {string} February")
+	public void verifyThatAllTheReturnTicketsDatesAreFebruary(String dateOfReturnTicket) {
+		then(PAGES.getFlightsSelectTicketPage().isDepartureDate(dateOfReturnTicket)).isTrue();
+		LOGGER.debug("The user should see that all the return tickets dates are as expected");
+	}
+
+	@Then("Verify that origin main {string} as expected")
+	public void verifyThatOriginMainAsExpected(String originMain) {
+		then(PAGES.getFlightsSelectTicketPage().isCorrectOriginCountry(originMain)).isTrue();
+		LOGGER.debug("The user should see that all the departure tickets locations are as expected");
+	}
+
+	@Then("verify that all the tickets dates are {string}")
+	public void verifyThatAllTheTicketsDatesAre(String date) {
+		then(PAGES.getFlightsSelectTicketPage().isDepartureDate(date)).isTrue();
+		LOGGER.debug("The user should see that all the departure tickets dates are as expected");
+	}
+
+	@Then("verify that all the tickets types are {string}")
+	public void verifyThatAllTheTicketsTypesAre(String classType) {
+		then(PAGES.getFlightsSelectTicketPage().isBusinessCabin(classType)).isTrue();
+		LOGGER.debug("The user should see that all tickets cabin type are as expected");
+
 	}
 }

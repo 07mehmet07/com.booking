@@ -4,7 +4,7 @@ Feature: Booking.com hotels tab tests
     Given user is in the booking.com page
 
 #This name must be the same as the tags in the CukesRunner class
-  @smokeTests
+  @smokeTest
   Scenario: As a user i should be able to book a hotel room and see successful checkout page
     And types New York in the search bar
     And chooses next month's 8'th day to 10'th day

@@ -5,10 +5,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.BrowserUtils;
 
-public class CarRentalsCheckoutSteps extends BaseStep {
+public class CarRentalsEndToEndTestSteps extends BaseStep {
 
-    private static final Logger LOGGER = LogManager.getLogger(CarRentalsCheckoutSteps.class);
+    private static final Logger LOGGER = LogManager.getLogger(CarRentalsEndToEndTestSteps.class);
 
     @When("the user clicks on the Search Cars button")
     public void the_user_clicks_on_the_search_cars_button() {
@@ -123,48 +124,91 @@ public class CarRentalsCheckoutSteps extends BaseStep {
 
     @When("the user enters Card Number as {string}")
     public void the_user_enters_card_number_as(String cardNumber) {
+
         PAGES.getCarRentalsCheckoutPage().enterCardNumber(cardNumber);
         LOGGER.debug("The user enters cardNumber");
     }
 
     @When("the user enters Expiration Date as {string}")
     public void the_user_enters_expiration_date_as(String expirationDate) {
+
         PAGES.getCarRentalsCheckoutPage().enterExpirationDate(expirationDate);
         LOGGER.debug("The user enters expirationDate");
     }
 
     @When("the user enters CVV \\(CVC) Code as {string}")
     public void the_user_enters_cvv_cvc_code_as(String cvv) {
+
         PAGES.getCarRentalsCheckoutPage().enterCvv(cvv);
         LOGGER.debug("The user enters cvv");
     }
 
     @When("the user selects to get emails from Booking.com")
     public void the_user_selects_to_get_emails_from_booking_com() {
+
         PAGES.getCarRentalsCheckoutPage().clickOnConsentMarketingEmailsCheckingBox();
         LOGGER.debug("The user selects to get email");
     }
 
     @When("the user selects to get emails from Booking Transport Limited")
     public void the_user_selects_to_get_emails_from_booking_transport_limited() {
+
         PAGES.getCarRentalsCheckoutPage().clickOnConsentTransportDealsCheckingBox();
         LOGGER.debug("The user selects to get email");
     }
 
     @When("the user click on the Book Now button")
     public void the_user_click_on_the_book_now_button() {
+
         PAGES.getCarRentalsCheckoutPage().clickOnBookNowButton();
         LOGGER.debug("The user clicks on book now button");
     }
 
     @Then("the user validate confirmation message with correct user name as {string}")
     public void theUserValidateConfirmationMessageWithCorrectUserNameAs(String userName) {
+
         boolean isCorrectConfirmation = PAGES.getCarRentalsCheckoutPage()
                 .isConfirmationMessageDisplayedWithCorrectName(userName);
         softAssertions.assertThat(isCorrectConfirmation)
                 .as("The confirmation popup does not include the correct user's name")
                 .isTrue();
+
         softAssertions.assertAll();
     }
 
+    @Then("the user confirms the accuracy of the information of Pickup Location as {string} and Dates")
+    public void theUserConfirmsTheAccuracyOfTheInformationOfPickupLocationAsAndDates(String location) {
+
+        boolean isCorrect = PAGES.getCarRentalsSearchResultsPage().isPickupLocationCorrect(location);
+        softAssertions.assertThat(isCorrect).as("Actual location is not the same with the previous one").isTrue();
+    }
+
+    @When("the user selects the size of the car as {string}")
+    public void theUserSelectsTheSizeOfTheCarAs(String size) {
+
+        PAGES.getCarRentalsSearchResultsPage().chooseCarSize(size);
+        LOGGER.debug("The user selects the size of the car");
+    }
+
+    @And("the user clicks on the Search button")
+    public void theUserClicksOnTheSearchButton() {
+
+        PAGES.getCarRentalsSearchResultsPage().clickOnSearchButton();
+        LOGGER.debug("The user clicks on the search button");
+    }
+
+	@And("the user clicks on the view deal button belonging to the car shown at the top")
+	public void theUserClicksOnTheViewDealButtonBelongingToTheCarShownAtTheTop() {
+
+		PAGES.getCarRentalsSearchResultsPage().clickOnViewDealButton(0);
+		LOGGER.debug("The user clicks on the ViewDeal button");
+	}
+
+	@Then("the user validates the size of the car as {string} which is selected at the previous page")
+	public void theUserValidatesTheSizeOfTheCarAsWhichIsSelectedAtThePreviousPage(String size) {
+
+		String sizeOfCar = PAGES.getCarRentalsDealingPage().getCarInformation(3);
+		boolean isCorrect = sizeOfCar.equalsIgnoreCase(size);
+		softAssertions.assertThat(isCorrect).as("actual size does not match with the selected car").isTrue();
+	}
 }

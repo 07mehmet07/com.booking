@@ -17,8 +17,11 @@ public class CarRentalsDealingPage extends BasePage {
 	@FindBy(css = ".carRentalItemDetails > .d-flex > .fs-4")
 	private WebElement pickUpLocation;
 
-	@FindBy(xpath = "//div[@class='mt-5']/h3/span[2]")
+	@FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[2]/div[3]/h3[1]/span[2]")
 	private WebElement totalPrice;
+
+	@FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[2]/div[4]/h3[1]/span[2]")
+	private WebElement totalPriceUpdated;
 
 	@FindBy(css = ".col-8 > .mt-5 > .btn")
 	private WebElement belowGoToBookButton;
@@ -38,8 +41,10 @@ public class CarRentalsDealingPage extends BasePage {
 		return pickUpLocation.getText();
 	}
 
-	public String getTotalPrice() {
-		return totalPrice.getText();
+	public double getTotalPrice() {
+		System.out.println(totalPrice.getText());
+		System.out.println(Double.parseDouble(totalPrice.getText().replace("$", "")));
+		return Double.parseDouble(totalPrice.getText().replace("$",""));
 	}
 
 	public void clickBelowGoToBookButton() {
@@ -47,7 +52,14 @@ public class CarRentalsDealingPage extends BasePage {
 	}
 
 	public void clickInsuranceCheckBoxes(int index) {
-		insuranceCheckBoxes.get(index).click();
+
+		actions.moveToElement(insuranceCheckBoxes.get(index)).click().build().perform();
+	}
+
+	public double getTotalPriceUpdated() {
+		System.out.println(totalPriceUpdated.getText());
+		System.out.println(Double.parseDouble(totalPriceUpdated.getText().replace("$", "")));
+		return Double.parseDouble(totalPriceUpdated.getText().replace("$",""));
 	}
 
 }

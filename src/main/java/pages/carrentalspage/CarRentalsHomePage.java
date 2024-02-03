@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.BasePage;
+import utils.BrowserUtils;
 
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class CarRentalsHomePage extends BasePage {
 	@FindBy(css = ".headerBtn")
 	private WebElement searchCarsButton;
 
-	// @FindBy(css = ".headerDateInput.form-control.fs-5")
-	// private WebElement enterPickupDateField;
+	@FindBy(css = ".headerDateInput.form-control.fs-5")
+	private WebElement enterPickupDateField;
 
-	// @FindBy(css = ".headerDateInput.form-control.fs-5.position-relative")
-	// private WebElement enterDropOffDateField;
+	@FindBy(css = ".headerDateInput.form-control.fs-5.position-relative")
+	private WebElement enterDropOffDateField;
 
 	@FindBy(xpath = "//h1[text()='Car rental']")
 	private WebElement welcomeHeadingForCarRentalsSearchResultPage;
@@ -56,27 +57,17 @@ public class CarRentalsHomePage extends BasePage {
 	 */
 
 	public void setPickupDate(String date) {
-		String className = "headerDateInput.form-control.fs-5";
-		utils.JSUtils.setElementValueByClassName(className, date);
-		welcomeHeadingForCarRentals.click();
+		enterPickupDateField.sendKeys(date);
 	}
 
 	public void setDropOffDate(String date) {
-		String className = "headerDateInput.form-control.fs-5.position-relative";
-		utils.JSUtils.setElementValueByClassName(className, date);
-		welcomeHeadingForCarRentals.click();
+		enterDropOffDateField.sendKeys(date);
 	}
 
 	public void enterValueIntoPickupLocationField(String placeToPickup) {
 		enterPickupLocationField.clear();
 		enterPickupLocationField.sendKeys(placeToPickup);
 	}
-
-	// public void choosePickupDate(String day, String month, String year) {
-	// datesForPickupAndDropOff.get(1).click();
-	// Select select = new Select(datesForPickupAndDropOff.get(1));
-	//
-	// }
 
 	/**
 	 * @param pickup Should be entered in military time format . Also, it should be only
@@ -88,9 +79,9 @@ public class CarRentalsHomePage extends BasePage {
 	 */
 
 	public void enterHoursForPickupAndDrop(String pickup, String drop) {
-		Select selectPickup = new Select(datesForPickupAndDropOff.get(1));
-		Select selectDrop = new Select(datesForPickupAndDropOff.get(2));
+		Select selectPickup = new Select(hoursForPickupAndDrop.get(0));
 		selectPickup.selectByVisibleText(pickup);
+		Select selectDrop = new Select(hoursForPickupAndDrop.get(1));
 		selectDrop.selectByVisibleText(drop);
 	}
 
@@ -102,5 +93,4 @@ public class CarRentalsHomePage extends BasePage {
 		String welcomeHeading = welcomeHeadingForCarRentalsSearchResultPage.getText();
 		return welcomeHeading.equalsIgnoreCase("Car rental");
 	}
-
 }

@@ -95,6 +95,7 @@ public class CarRentalsCheckoutPage extends BasePage {
 
 	public void clickOnGoToBookButton() {
 		BrowserUtils.scrollDownWithPageDownButton(2);
+		BrowserUtils.wait(10);
 		goToBookButton.click();
 	}
 
@@ -120,6 +121,7 @@ public class CarRentalsCheckoutPage extends BasePage {
 	}
 
 	public void enterCardInformation(String name, String cardNumber, String expirationDate, String cvv) {
+		BrowserUtils.scrollUpWithPageUpButton(1);
 		enterCardHoldersName(name);
 		enterCardNumber(cardNumber);
 		enterExpirationDate(expirationDate);
@@ -148,7 +150,7 @@ public class CarRentalsCheckoutPage extends BasePage {
 		bookNowButton.click();
 	}
 
-	public boolean isThisPagePrevious() {
+	public boolean isThisDealingPage() {
 		return goToBookButton.isDisplayed();
 	}
 
@@ -209,4 +211,9 @@ public class CarRentalsCheckoutPage extends BasePage {
 		phoneNumberField.click();
 	}
 
+	public boolean isThisCheckoutPage() {
+
+		BrowserUtils.moveToElement(bookNowButton);
+		return  bookNowButton.isDisplayed();
+	}
 }

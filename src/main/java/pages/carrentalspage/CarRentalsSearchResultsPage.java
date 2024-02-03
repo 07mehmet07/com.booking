@@ -3,6 +3,7 @@ package pages.carrentalspage;
 import pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.BrowserUtils;
 
 import java.util.List;
 
@@ -10,6 +11,9 @@ public class CarRentalsSearchResultsPage extends BasePage {
 
 	@FindBy(xpath = "(//div[@class='listResult']/div/button/div)")
 	private List<WebElement> carSizeList;
+
+	@FindBy(xpath = "//div[@stye='[object Object]']")
+	private WebElement priceOfCar;
 
 	@FindBy(xpath = "//span[@class='fs-4 fw-bold']")
 	private List<WebElement> carPickupLocationList;
@@ -77,7 +81,9 @@ public class CarRentalsSearchResultsPage extends BasePage {
 	}
 
 	public void clickOnSearchButton() {
+		BrowserUtils.scrollDownWithPageDownButton(1);
 		searchButton.click();
+		BrowserUtils.scrollUpWithPageUpButton(1);
 	}
 
 	public void clickOnSortByLowestPriceButton() {
@@ -92,4 +98,17 @@ public class CarRentalsSearchResultsPage extends BasePage {
 		pickupLocationField.sendKeys(location);
 	}
 
+	public boolean isPickupLocationCorrect(String location){
+		return pickupLocationField.getAttribute("value").equalsIgnoreCase(location);
+
+	}
+
+	public double getPriceOfCar(){
+		System.out.println(Double.parseDouble(priceOfCar.getText().replace("$", "")));
+		return Double.parseDouble(priceOfCar.getText().replace("$",""));
+	}
+
+	public List<WebElement> getCarPickupLocationList() {
+		return carPickupLocationList;
+	}
 }

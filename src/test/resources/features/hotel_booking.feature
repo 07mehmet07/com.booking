@@ -4,7 +4,7 @@ Feature: Booking.com hotels tab tests
     Given user is in the booking.com page
 
 #This name must be the same as the tags in the CukesRunner class
-  @smokeTest
+  @smokeTest @endToEndTests
   Scenario: As a user i should be able to book a hotel room and see successful checkout page
     And types New York in the search bar
     And chooses next month's 8'th day to 10'th day
@@ -22,7 +22,7 @@ Feature: Booking.com hotels tab tests
     Then user should see checkout dialogue and click close button properly
     And verify user sees booking.com homepage
 
-  @FunctionalityTests
+  @functionalityTests
   Scenario: As a user i should be able to book a hotel room and see successful checkout page
     And types New York in the search bar
     And chooses next month's 8'th day to 10'th day
@@ -54,14 +54,14 @@ Feature: Booking.com hotels tab tests
     And clicks search button
     Then user should see only same brand hotels as the checkbox
 
-  @QuickAndEasyTripPlannerTest
+  @functionalityTests
   Scenario: user should see the numbers of Hotels,Resorts,Luxery and Cabins in Stays Page
     And automation collects the numbers of Hotels Resorts Luxery and Cabins and Checks the numbers validation
     And click to the Hotels cabins tab
     When user navigated to hotel search page
     Then user should see the Cabin Hotels in new page
 
-  @ValidationOfAdultField
+  @functionalityTests
   Scenario: Validate that the user can make booking for one room for twenty person
     And types New York in the search bar
     And chooses next month's 8'th day to 10'th day
@@ -89,7 +89,7 @@ Feature: Booking.com hotels tab tests
     When clicks search button
     Then user should see only hotels with max fifty dollars price
 
-  @fuctionalityTest1
+  @functionalityTests
   Scenario:Validation of searchBox field
     And types numbers in the search bar
     And chooses next month's 8'th day to 10'th day
@@ -97,8 +97,7 @@ Feature: Booking.com hotels tab tests
     And clicks search hotels button
     When user navigated to hotel search page
 
-
-  @brandNewTest
+  @functionalityTests
   Scenario Outline: User tries invalid credentials
     And types <city> in the search bar
     And chooses next month's 8'th day to 10'th day

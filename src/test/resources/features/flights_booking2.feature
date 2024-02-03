@@ -1,4 +1,4 @@
-@flight-booking
+@endToEndTests
 Feature: Verification Flight booking process as end to end test
 
   Background:

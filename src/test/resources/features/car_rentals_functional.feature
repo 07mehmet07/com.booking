@@ -5,7 +5,7 @@ Feature: Car Rentals Functional Test
     Given the user navigates to the inarbooking Home Page
     When the user clicks on the Car rentals tab
 
-  @functional
+  @functionalityTests
   Scenario: Validate whether the selected options admitted correctly.
     When the user enters Pickup Location as "Golden Gate Bridge"
     And the user enters Pickup Date as "03/08/2029"
@@ -14,7 +14,7 @@ Feature: Car Rentals Functional Test
     And the user clicks the Search Cars button
     Then the user confirms the accuracy of the information entered
 
-  @functional
+  @functionalityTests
   Scenario: Searching a large car in Great Wall of China.
     When types "Great Wall of China" in the pickup location
     And the user clicks the Search Cars button
@@ -23,7 +23,7 @@ Feature: Car Rentals Functional Test
     And clicks search button
     Then the user should see the "Great Wall of China" as the pickup location
 
-  @functional
+  @functionalityTests
   Scenario: The rental price of an insured car is being investigated.
     When types "Grand Bazaar" in the pickup location
     And the user clicks the Search Cars button
@@ -34,8 +34,7 @@ Feature: Car Rentals Functional Test
     When clicks What is covered button
     Then verify that the total price is correct
 
-
-  @functional
+  @functionalityTests
   Scenario: Validate the information that is related to what we have chosen on previous pages.
     When the user clicks on the Search Cars button
     And the user clicks on the View Deal button of the Selected Car
@@ -43,7 +42,7 @@ Feature: Car Rentals Functional Test
     Then the user should see the Trade of car is correct as "Volkswagen Polo or similar small car"
     And the user should see the location of Pickup and Drop-off is correct as "United Kingdom - Heathrow Airport"
 
-  @functional
+  @functionalityTests
   Scenario: Validate that the back button which is located on the Checkout Page moves the user to the previous page.
     When the user clicks on the Search Cars button
     And the user clicks on the View Deal button of the Selected Car
@@ -52,7 +51,7 @@ Feature: Car Rentals Functional Test
     And the user clicks on the back button
     Then the user navigates to the previous page
 
-  @functional
+  @functionalityTests
   Scenario: Validate that the violation message is displayed when the user enters invalid card number into the related input field.
     When the user clicks on the Search Cars button
     And the user clicks on the View Deal button of the Selected Car

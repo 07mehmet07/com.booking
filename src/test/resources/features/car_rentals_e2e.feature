@@ -33,3 +33,5 @@ Feature: Verify that all processes of the car rental pages function properly.
     And the user selects to get emails from Booking Transport Limited
     And the user click on the Book Now button
     Then the user validate confirmation message with correct user name as "Inar Academy"
+
+

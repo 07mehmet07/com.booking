@@ -4,7 +4,7 @@ Feature: Verification Flight booking process
   Background:
     Given the user is on the Inar Academy homepage and clicks on the Booking link
 
-  @smokeTests3
+  @smokeTest
   Scenario: This Test Case  validates  the functionality of flight booking  process.
     When the user clicks on the flights tab
     When the user clicks on the "One Way" radio
@@ -32,7 +32,7 @@ Feature: Verification Flight booking process
     And The user clicks on close button
 
 
-  @adult
+  @verify_adult
   Scenario: This test Case verify that adults and children numbers are 26 adult and 12 children as expected
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -45,7 +45,7 @@ Feature: Verification Flight booking process
     Then verify that adults and children numbers are "26" adult and "12" children as expected
 
 
-  @data
+  @verify_return_date
   Scenario: This test Case verify that all the return tickets dates are 12 February 2024
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -59,7 +59,7 @@ Feature: Verification Flight booking process
     Then verify that all the return tickets dates are "12" February
 
 
-  @date
+  @verify_departure_country
   Scenario: This test Case Verify that total price is correct
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -72,7 +72,7 @@ Feature: Verification Flight booking process
     Then Verify that origin main "Canada" as expected
 
 
-  @ahmet
+  @verify_ticket_date
   Scenario: This Test Case  validates  the functionality of flight booking  process.
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio
@@ -83,7 +83,7 @@ Feature: Verification Flight booking process
     Then verify that all the tickets dates are "06"
 
 
-  @ahmet1
+  @verify_ticket_type
   Scenario: This Test Case  validates  the functionality of flight booking  process.
     When the user clicks on the flights tab
     When the user clicks on the "Round Trip" radio

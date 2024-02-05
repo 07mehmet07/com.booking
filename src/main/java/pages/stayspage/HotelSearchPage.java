@@ -134,12 +134,7 @@ public class HotelSearchPage extends BasePage {
 	}
 
 	public void decreaseMaxPriceTo50() {
-		actions.keyDown(Keys.TAB)
-				.keyDown(Keys.TAB)
-				.keyDown(Keys.TAB)
-				.keyDown(Keys.TAB)
-				.build()
-				.perform();
+		actions.keyDown(Keys.TAB).keyDown(Keys.TAB).keyDown(Keys.TAB).keyDown(Keys.TAB).build().perform();
 		for (int i = 0; i < 200; i++) {
 			actions.keyDown(Keys.ARROW_LEFT).build().perform();
 		}

@@ -1,3 +1,4 @@
+@all
 Feature: Booking.com hotels tab tests
 
   Background:

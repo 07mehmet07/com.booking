@@ -1,4 +1,4 @@
-@flight
+@flight @all
 Feature: Verification Flight booking process
 
   Background:

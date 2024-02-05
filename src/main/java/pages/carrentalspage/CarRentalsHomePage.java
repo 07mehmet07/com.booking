@@ -93,4 +93,5 @@ public class CarRentalsHomePage extends BasePage {
 		String welcomeHeading = welcomeHeadingForCarRentalsSearchResultPage.getText();
 		return welcomeHeading.equalsIgnoreCase("Car rental");
 	}
+
 }

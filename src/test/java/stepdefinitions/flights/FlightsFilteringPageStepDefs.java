@@ -9,7 +9,6 @@ import utils.BrowserUtils;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-
 public class FlightsFilteringPageStepDefs extends BaseStep {
 
 	private static Logger LOGGER = LogManager.getLogger(FlightsFilteringPageStepDefs.class);
@@ -21,14 +20,12 @@ public class FlightsFilteringPageStepDefs extends BaseStep {
 		LOGGER.info("The user selects the ticket listing type");
 	}
 
-
 	@And("the user click on #{int} see availability button of the fastest flight")
 	public void theUserClickOnSeeAvailabilityButtonOfTheFastestFlight(int numberOfTicket) {
 		PAGES.getFlightsSelectTicketPage().selectTicketForTravel(numberOfTicket);
 		LOGGER.info("The user clicks on See Availability button ");
 
 	}
-
 
 	@And("the user click on #{int} select return ticket button of the fastest flight")
 	public void theUserClickOnSelectReturnTicketButtonOfTheFastestFlight(int numberOfTicket) {
@@ -60,4 +57,5 @@ public class FlightsFilteringPageStepDefs extends BaseStep {
 		LOGGER.debug("The user should see that all tickets cabin type are as expected");
 
 	}
+
 }

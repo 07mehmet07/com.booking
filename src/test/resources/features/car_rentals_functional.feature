@@ -1,3 +1,4 @@
+@all
 Feature: Car Rentals Functional Test
   As a user, I want to enter all the required information correctly so that I can rent a car.
 

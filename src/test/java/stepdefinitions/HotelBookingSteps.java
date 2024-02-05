@@ -122,8 +122,8 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 	@And("verify user sees booking.com homepage")
 	public void verify_user_sees_booking_com_homepage() {
 		boolean result = DriverManager.getWebDriver()
-				.getCurrentUrl()
-				.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
+			.getCurrentUrl()
+			.startsWith("https://InarAcademy:Fk160621.@test.inar-academy.com/booking");
 		Assertions.assertThat(result).isTrue();
 		LOGGER.info("User is navigated to the home page");
 	}
@@ -181,8 +181,8 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 		BrowserUtils.wait(0.5);
 		LOGGER.info("Hotels,Resorts,Luxery and Cabins numbers must be true!");
 		PAGES.getHotelsTabHomePage()
-				.checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins("9361 hotels", "9583 hotels", "9361 hotels",
-						"8695 hotels");
+			.checkTheTotalNumbersOfHotelsResortsLuxeryAndCabins("9361 hotels", "9583 hotels", "9361 hotels",
+					"8695 hotels");
 		LOGGER.debug("All Item's numbers are correct!");
 		BrowserUtils.wait(1.0);
 	}
@@ -260,7 +260,7 @@ public class HotelBookingSteps extends stepdefinitions.BaseStep {
 
 	@When("in the final details page user fills {string}, {string}, {string}, {string} afterwards clicks complete booking button")
 	public void in_the_final_details_page_user_fills_afterwards_clicks_complete_booking_button(String phoneNumber,
-																							   String cardHoldersName, String cardNumber, String cvc) {
+			String cardHoldersName, String cardNumber, String cvc) {
 		BrowserUtils.scrollUpWithPageUpButton(2);
 		PAGES.getHotelsCheckoutPage().fillPhoneNumberField(phoneNumber);
 		BrowserUtils.scrollDownWithPageDownButton(1);

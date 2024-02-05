@@ -8,7 +8,6 @@ import stepdefinitions.BaseStep;
 
 public class FlightsExtrasPageStepsDefs extends BaseStep {
 
-
 	private static final Logger LOGGER = LogManager.getLogger(FlightsCheckAndPayPageStepDefs.class);
 
 	@And("the user select Add Extra Legroom Seat for extra")

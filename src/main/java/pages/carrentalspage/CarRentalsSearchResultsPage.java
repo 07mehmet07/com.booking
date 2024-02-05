@@ -98,17 +98,18 @@ public class CarRentalsSearchResultsPage extends BasePage {
 		pickupLocationField.sendKeys(location);
 	}
 
-	public boolean isPickupLocationCorrect(String location){
+	public boolean isPickupLocationCorrect(String location) {
 		return pickupLocationField.getAttribute("value").equalsIgnoreCase(location);
 
 	}
 
-	public double getPriceOfCar(){
+	public double getPriceOfCar() {
 		System.out.println(Double.parseDouble(priceOfCar.getText().replace("$", "")));
-		return Double.parseDouble(priceOfCar.getText().replace("$",""));
+		return Double.parseDouble(priceOfCar.getText().replace("$", ""));
 	}
 
 	public List<WebElement> getCarPickupLocationList() {
 		return carPickupLocationList;
 	}
+
 }

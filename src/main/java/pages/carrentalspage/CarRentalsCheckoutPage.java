@@ -214,6 +214,7 @@ public class CarRentalsCheckoutPage extends BasePage {
 	public boolean isThisCheckoutPage() {
 
 		BrowserUtils.moveToElement(bookNowButton);
-		return  bookNowButton.isDisplayed();
+		return bookNowButton.isDisplayed();
 	}
+
 }

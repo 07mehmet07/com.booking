@@ -17,7 +17,6 @@ public class FlightsDetailsPageStepDefs extends BaseStep {
 
 	}
 
-
 	@And("the user enters phone number as {string}")
 	public void theUserEntersPhoneNumberAs(String phoneNo) {
 		PAGES.getFlightsDetailsPage().setPhoneNumberArea(phoneNo);
@@ -25,18 +24,17 @@ public class FlightsDetailsPageStepDefs extends BaseStep {
 
 	}
 
-
 	@And("the user enters as {string} first name and as {string} last name for #{int} passenger")
-	public void theUserEntersAsFirstNameAndAsLastNameForPassenger(String firstName, String lastName, int passengerNumber) {
-		PAGES.getFlightsDetailsPage().setFirstNameInputAreas(firstName,lastName , passengerNumber);
+	public void theUserEntersAsFirstNameAndAsLastNameForPassenger(String firstName, String lastName,
+			int passengerNumber) {
+		PAGES.getFlightsDetailsPage().setFirstNameInputAreas(firstName, lastName, passengerNumber);
 		LOGGER.info("The user enters a first name and a last name");
 
 	}
 
-
 	@And("the user select {string} as gender for #{int} passenger")
 	public void theUserSelectAsGenderForPassenger(String gender, int numberOfPassenger) {
-		PAGES.getFlightsDetailsPage().selectGender(gender,numberOfPassenger);
+		PAGES.getFlightsDetailsPage().selectGender(gender, numberOfPassenger);
 		BrowserUtils.wait(2);
 		LOGGER.info("The user selects a gender and then selects year,month, a day for birth date.");
 
@@ -49,7 +47,6 @@ public class FlightsDetailsPageStepDefs extends BaseStep {
 		LOGGER.info("The user selects year,month,day for birth date.");
 
 	}
-
 
 	@And("the user clicks on select extras button")
 	public void theUserClicksOnSelectExtrasButton() {

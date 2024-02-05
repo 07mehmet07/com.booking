@@ -44,7 +44,7 @@ public class CarRentalsDealingPage extends BasePage {
 	public double getTotalPrice() {
 		System.out.println(totalPrice.getText());
 		System.out.println(Double.parseDouble(totalPrice.getText().replace("$", "")));
-		return Double.parseDouble(totalPrice.getText().replace("$",""));
+		return Double.parseDouble(totalPrice.getText().replace("$", ""));
 	}
 
 	public void clickBelowGoToBookButton() {
@@ -59,7 +59,7 @@ public class CarRentalsDealingPage extends BasePage {
 	public double getTotalPriceUpdated() {
 		System.out.println(totalPriceUpdated.getText());
 		System.out.println(Double.parseDouble(totalPriceUpdated.getText().replace("$", "")));
-		return Double.parseDouble(totalPriceUpdated.getText().replace("$",""));
+		return Double.parseDouble(totalPriceUpdated.getText().replace("$", ""));
 	}
 
 }

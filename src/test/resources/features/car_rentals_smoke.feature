@@ -1,3 +1,4 @@
+@all
 Feature: Car Rentals Smoke Test
   Background:
     Given the user navigates to the inarbooking Home Page

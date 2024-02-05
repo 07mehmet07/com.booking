@@ -48,7 +48,7 @@ public class DriverManager {
 					driver = new ChromeDriver(chromeOptions);
 				}
 			}
-			driver.get("https://InarAcademy:Fk160621.@test.inar-academy.com");
+			driver.get(ConfigurationManager.getProperty("baseURL"));
 			THREAD_LOCAL_DRIVER.set(driver);
 		}
 
